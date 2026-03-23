@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Gut Détente</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600&family=Instrument+Serif&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: #F7F3EE; color: #1E2D3A; padding: 40px 24px 60px; }
+  .container { max-width: 880px; margin: 0 auto; }
+  h1 { font-family: 'Instrument Serif', Georgia, serif; font-size: 28px; font-weight: 400; margin-bottom: 4px; }
+  .subtitle { font-size: 13px; color: #8A9BAE; margin-bottom: 32px; }
+  .schematic { background: #fff; border: 1px solid #E8E4DD; border-radius: 12px; padding: 24px; overflow-x: auto; }
+  .agreements { margin-top: 28px; display: flex; flex-direction: column; gap: 12px; }
+  .agreement { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; border-radius: 10px; }
+  .agreement-num { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #fff; flex-shrink: 0; margin-top: 1px; }
+  .agreement-body { font-size: 13px; line-height: 1.55; }
+  .agreement-title { font-weight: 600; margin-bottom: 2px; }
+  .agreement-enforced { font-size: 11px; color: #8A9BAE; margin-top: 3px; }
+  .cascade { margin-top: 28px; background: #FCEBEB; border: 1px solid #F7C1C1; border-radius: 10px; padding: 14px 18px; }
+  .cascade-title { font-size: 13px; font-weight: 600; color: #A32D2D; margin-bottom: 4px; }
+  .cascade-text { font-size: 12px; line-height: 1.6; color: #501313; }
+  /* Tab navigation */
+  .tab-nav { background: #fff; border-bottom: 1px solid #e0ded8; position: sticky; top: 0; z-index: 100; }
+  .tab-nav-inner { max-width: 960px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .tab-nav a { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.5px; color: #777; text-decoration: none; padding: 14px 14px 12px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .tab-nav a:hover { color: #111; border-bottom-color: #ccc; }
+  .tab-nav a.active { color: #111; border-bottom-color: #185FA5; }
+</style>
+</head>
+<body>
+<nav class="tab-nav">
+  <div class="tab-nav-inner">
+    <a href="index.html">Overview</a>
+    <a href="harrisons-journey.html">Harrison&rsquo;s Canyon</a>
+    <a href="town-bottom.html">The Town</a>
+    <a href="villus-accord.html">Villus Accord</a>
+    <a href="disease-circuit.html">Disease Circuit</a>
+    <a href="gut-game-theory.html" class="active">Gut D&eacute;tente</a>
+    <a href="appendix-calprotectin.html">Calprotectin</a>
+    <a href="appendix-dendritic.html">Dendritic Cells</a>
+    <a href="appendix-charts.html">Charts</a>
+  </div>
+</nav>
+<div class="container">
+
+<h1>The gut détente</h1>
+<p class="subtitle">A negotiated standoff maintained by three interlocking agreements. The default is war.</p>
+
+<div class="schematic">
+<svg width="100%" viewBox="0 0 830 530">
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M2 1.5L8 5L2 8.5" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- ── ZONE BACKGROUNDS ── -->
+  <!-- Lumen -->
+  <rect x="0" y="0" width="830" height="130" rx="0" fill="#F0EDE6" opacity="0.5" stroke="#E8E4DD" stroke-width="1"/>
+  <text x="20" y="24" font-size="11" font-weight="600" fill="#8A9BAE" letter-spacing="1.5">LUMEN</text>
+
+  <!-- DMZ / Barrier -->
+  <rect x="0" y="130" width="830" height="80" rx="0" fill="#E1F5EE" opacity="0.4" stroke="#E8E4DD" stroke-width="1"/>
+  <text x="20" y="143" font-size="11" font-weight="600" fill="#0F6E56" letter-spacing="1.5">BARRIER (DMZ)</text>
+
+  <!-- Lamina propria -->
+  <rect x="0" y="210" width="830" height="220" rx="0" fill="#E6F1FB" opacity="0.3" stroke="#E8E4DD" stroke-width="1"/>
+  <text x="20" y="234" font-size="11" font-weight="600" fill="#185FA5" letter-spacing="1.5">LAMINA PROPRIA</text>
+
+  <!-- Vasculature -->
+  <rect x="0" y="430" width="830" height="100" rx="0" fill="#FAECE7" opacity="0.3" stroke="#E8E4DD" stroke-width="1"/>
+  <text x="20" y="454" font-size="11" font-weight="600" fill="#993C1D" letter-spacing="1.5">VASCULATURE</text>
+
+  <!-- ══════════════════════════════════ -->
+  <!-- LUMEN: Commensals -->
+  <!-- ══════════════════════════════════ -->
+  <rect x="60" y="42" width="200" height="70" rx="10" fill="#F7F3EE" stroke="#B4B2A9" stroke-width="1"/>
+  <text x="160" y="66" text-anchor="middle" font-size="13" font-weight="600" fill="#444441">Commensals</text>
+  <text x="160" y="82" text-anchor="middle" font-size="10" fill="#888780">massive foreign population</text>
+  <text x="160" y="96" text-anchor="middle" font-size="10" fill="#888780">conditional residency permit</text>
+
+  <!-- Butyrate arrow down (rent payment) -->
+  <line x1="160" y1="112" x2="160" y2="128" stroke="#0D7377" stroke-width="1.2" marker-end="url(#ah)"/>
+  <text x="210" y="124" font-size="9" fill="#0D7377" font-style="italic">butyrate (rent)</text>
+
+  <!-- Pathogens lurking -->
+  <rect x="360" y="50" width="150" height="50" rx="10" fill="#FCEBEB" stroke="#E24B4A" stroke-width="0.8" stroke-dasharray="4 3"/>
+  <text x="435" y="72" text-anchor="middle" font-size="11" font-weight="500" fill="#A32D2D">Pathogens</text>
+  <text x="435" y="86" text-anchor="middle" font-size="9" fill="#A32D2D">opportunists at the border</text>
+
+  <!-- Microbial antigen sampling arrow -->
+  <rect x="590" y="42" width="190" height="70" rx="10" fill="#F7F3EE" stroke="#B4B2A9" stroke-width="0.8" stroke-dasharray="4 3"/>
+  <text x="685" y="64" text-anchor="middle" font-size="10" font-weight="500" fill="#5F5E5A">Microbial antigens</text>
+  <text x="685" y="80" text-anchor="middle" font-size="9" fill="#888780">curated samples via M cells</text>
+  <text x="685" y="94" text-anchor="middle" font-size="9" fill="#888780">(managed ignorance)</text>
+  <line x1="685" y1="112" x2="685" y2="128" stroke="#8A9BAE" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#ah)"/>
+
+  <!-- ══════════════════════════════════ -->
+  <!-- BARRIER: Epithelial cells + Paneth + mucus -->
+  <!-- ══════════════════════════════════ -->
+  <!-- Epithelial layer representation -->
+  <rect x="60" y="150" width="140" height="48" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1"/>
+  <text x="130" y="170" text-anchor="middle" font-size="11" font-weight="600" fill="#085041">Epithelial cells</text>
+  <text x="130" y="184" text-anchor="middle" font-size="9" fill="#0F6E56">tight junctions, mucus</text>
+
+  <rect x="220" y="150" width="140" height="48" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1"/>
+  <text x="290" y="170" text-anchor="middle" font-size="11" font-weight="600" fill="#085041">Paneth cells</text>
+  <text x="290" y="184" text-anchor="middle" font-size="9" fill="#0F6E56">defensins (HD5, HD6)</text>
+
+  <rect x="380" y="150" width="100" height="48" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1"/>
+  <text x="430" y="170" text-anchor="middle" font-size="11" font-weight="600" fill="#085041">IgA</text>
+  <text x="430" y="184" text-anchor="middle" font-size="9" fill="#0F6E56">neutralizing</text>
+
+  <!-- Managed sampling -->
+  <rect x="560" y="150" width="130" height="48" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.8" stroke-dasharray="4 3"/>
+  <text x="625" y="170" text-anchor="middle" font-size="11" font-weight="500" fill="#085041">M cells / DCs</text>
+  <text x="625" y="184" text-anchor="middle" font-size="9" fill="#0F6E56">sampling (controlled)</text>
+
+  <!-- Agreement 1 label -->
+  <rect x="715" y="152" width="100" height="44" rx="22" fill="#1D9E75" opacity="0.15" stroke="#1D9E75" stroke-width="0.8"/>
+  <text x="765" y="169" text-anchor="middle" font-size="10" font-weight="600" fill="#085041">Agreement 1</text>
+  <text x="765" y="183" text-anchor="middle" font-size="9" fill="#0F6E56">barrier compact</text>
+
+  <!-- ══════════════════════════════════ -->
+  <!-- LAMINA PROPRIA: The negotiating parties -->
+  <!-- ══════════════════════════════════ -->
+
+  <!-- DCs — the switchable sentinels -->
+  <rect x="60" y="250" width="170" height="70" rx="10" fill="#fff" stroke="#7F77DD" stroke-width="1"/>
+  <text x="145" y="274" text-anchor="middle" font-size="12" font-weight="600" fill="#3C3489">Dendritic cells</text>
+  <text x="145" y="290" text-anchor="middle" font-size="9" fill="#7F77DD">tolerogenic: TGF-β, RA → Tregs</text>
+  <text x="145" y="303" text-anchor="middle" font-size="9" fill="#E8634F">inflammatory: IL-23 → Th17</text>
+
+  <!-- Two-way arrow from DCs to barrier sampling -->
+  <line x1="145" y1="250" x2="145" y2="200" stroke="#7F77DD" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#ah)"/>
+
+  <!-- Tregs — the enforcers -->
+  <rect x="280" y="250" width="150" height="70" rx="10" fill="#fff" stroke="#1D9E75" stroke-width="1.2"/>
+  <text x="355" y="274" text-anchor="middle" font-size="12" font-weight="600" fill="#085041">Tregs</text>
+  <text x="355" y="290" text-anchor="middle" font-size="10" fill="#0F6E56">enforcers of the truce</text>
+  <text x="355" y="304" text-anchor="middle" font-size="9" fill="#8A9BAE">subsidized by commensal butyrate</text>
+
+  <!-- Suppression arrow from Tregs to Effectors -->
+  <line x1="430" y1="285" x2="478" y2="285" stroke="#1D9E75" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="454" y="278" text-anchor="middle" font-size="8" fill="#1D9E75">suppress</text>
+
+  <!-- Effector T cells — the standing army -->
+  <rect x="480" y="250" width="150" height="70" rx="10" fill="#fff" stroke="#E8634F" stroke-width="1"/>
+  <text x="555" y="270" text-anchor="middle" font-size="12" font-weight="600" fill="#993C1D">Effectors</text>
+  <text x="555" y="286" text-anchor="middle" font-size="9" fill="#E8634F">Th1, Th17 — standing army</text>
+  <text x="555" y="300" text-anchor="middle" font-size="9" fill="#8A9BAE">quiescent unless activation</text>
+  <text x="555" y="312" text-anchor="middle" font-size="9" fill="#8A9BAE">overcomes Treg suppression</text>
+
+  <!-- Agreement 2 label -->
+  <rect x="670" y="258" width="100" height="44" rx="22" fill="#7F77DD" opacity="0.12" stroke="#7F77DD" stroke-width="0.8"/>
+  <text x="720" y="275" text-anchor="middle" font-size="10" font-weight="600" fill="#3C3489">Agreement 2</text>
+  <text x="720" y="289" text-anchor="middle" font-size="9" fill="#7F77DD">tolerance pact</text>
+
+  <!-- DC differentiation arrows -->
+  <path d="M210 270 Q240 270 278 275" fill="none" stroke="#1D9E75" stroke-width="1" marker-end="url(#ah)"/>
+  <text x="235" y="263" font-size="8" fill="#1D9E75">TGF-β, RA</text>
+
+  <path d="M210 315 Q260 340 478 320" fill="none" stroke="#E8634F" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#ah)"/>
+  <text x="340" y="340" font-size="8" fill="#E8634F">IL-23 (when breached)</text>
+
+  <!-- Fibroblasts — the builders -->
+  <rect x="120" y="355" width="160" height="55" rx="10" fill="#fff" stroke="#B4B2A9" stroke-width="1"/>
+  <text x="200" y="377" text-anchor="middle" font-size="12" font-weight="600" fill="#444441">Fibroblasts</text>
+  <text x="200" y="393" text-anchor="middle" font-size="9" fill="#888780">builders — quiescent in health</text>
+
+  <!-- TL1A activation arrow from effectors to fibroblasts -->
+  <path d="M520 320 Q500 350 282 368" fill="none" stroke="#E8634F" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#ah)"/>
+  <text x="270" y="353" font-size="8" fill="#E8634F">TL1A, TGF-β (chronic inflammation)</text>
+
+  <!-- Autocrine loop on fibroblasts -->
+  <path d="M285 395 Q305 395 305 405 Q305 415 285 415 Q265 415 265 405 Q265 395 275 395" fill="none" stroke="#A32D2D" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#ah)"/>
+  <text x="220" y="430" font-size="8" fill="#A32D2D">autocrine TGF-β</text>
+  <text x="200" y="440" font-size="8" fill="#A32D2D">(self-sustaining if chronic)</text>
+
+  <!-- Agreement 3 label -->
+  <rect x="500" y="360" width="110" height="44" rx="22" fill="#B4B2A9" opacity="0.15" stroke="#888780" stroke-width="0.8"/>
+  <text x="555" y="377" text-anchor="middle" font-size="10" font-weight="600" fill="#444441">Agreement 3</text>
+  <text x="555" y="391" text-anchor="middle" font-size="9" fill="#888780">structural ceasefire</text>
+
+  <!-- IL-17 dual role annotation -->
+  <rect x="660" y="350" width="150" height="64" rx="8" fill="#FFF9E6" stroke="#BA7517" stroke-width="0.8"/>
+  <text x="735" y="368" text-anchor="middle" font-size="10" font-weight="600" fill="#854F0B">IL-17 (dual role)</text>
+  <text x="735" y="382" text-anchor="middle" font-size="9" fill="#854F0B">effector weapon</text>
+  <text x="735" y="394" text-anchor="middle" font-size="9" fill="#854F0B">AND barrier building material</text>
+  <text x="735" y="406" text-anchor="middle" font-size="8" fill="#BA7517">cannot remove without DMZ collapse</text>
+
+  <!-- Arrow from effectors to IL-17 box -->
+  <line x1="630" y1="290" x2="668" y2="360" stroke="#BA7517" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#ah)"/>
+  <!-- Arrow from IL-17 back up to barrier -->
+  <path d="M790 350 L790 235 L630 235 L630 210" fill="none" stroke="#BA7517" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#ah)"/>
+  <text x="700" y="245" font-size="8" fill="#BA7517" text-anchor="middle">maintains barrier</text>
+
+
+  <!-- ══════════════════════════════════ -->
+  <!-- VASCULATURE: Immigration corridor -->
+  <!-- ══════════════════════════════════ -->
+  <rect x="200" y="460" width="200" height="50" rx="10" fill="#FAECE7" stroke="#D85A30" stroke-width="1"/>
+  <text x="300" y="482" text-anchor="middle" font-size="12" font-weight="600" fill="#712B13">α4β7 / MAdCAM-1</text>
+  <text x="300" y="498" text-anchor="middle" font-size="9" fill="#993C1D">immigration corridor</text>
+
+  <!-- Arrow from vasculature up to effectors -->
+  <path d="M300 460 Q300 430 450 360 Q520 330 540 320" fill="none" stroke="#D85A30" stroke-width="1.2" marker-end="url(#ah)"/>
+  <text x="370" y="425" font-size="9" fill="#D85A30">new effector recruits</text>
+
+  <!-- Blood supply label -->
+  <rect x="480" y="465" width="160" height="40" rx="8" fill="none" stroke="#D85A30" stroke-width="0.5" stroke-dasharray="4 3"/>
+  <text x="560" y="482" text-anchor="middle" font-size="10" fill="#993C1D">Circulating T cells</text>
+  <text x="560" y="496" text-anchor="middle" font-size="9" fill="#993C1D">(naive + effector memory)</text>
+
+  <line x1="480" y1="485" x2="402" y2="485" stroke="#D85A30" stroke-width="1" marker-end="url(#ah)"/>
+
+</svg>
+</div>
+
+<!-- ── THE THREE AGREEMENTS ── -->
+<div class="agreements">
+  <div class="agreement" style="background: #E1F5EE;">
+    <div class="agreement-num" style="background: #1D9E75;">1</div>
+    <div class="agreement-body">
+      <div class="agreement-title" style="color: #085041;">The barrier compact</div>
+      Epithelial cells maintain physical separation. Paneth cells sterilize the crypt. Commensals stay luminal. In return, commensals get habitat and protection. The DMZ reduces information flow — the truce depends partly on managed ignorance.
+      <div class="agreement-enforced">Enforced by: defensins, mucus layer, IgA, tight junctions</div>
+      <div class="agreement-enforced">Weakened by: NOD2 mutations, defensin deficiency, dysbiosis, barrier-damaging drugs</div>
+    </div>
+  </div>
+  <div class="agreement" style="background: #EEEDFE;">
+    <div class="agreement-num" style="background: #7F77DD;">2</div>
+    <div class="agreement-body">
+      <div class="agreement-title" style="color: #3C3489;">The tolerance pact</div>
+      Tregs actively suppress effector responses to commensal antigens. DCs are conditioned to be tolerogenic. Commensals subsidize their own policing via butyrate → Treg differentiation. When the barrier weakens and antigen load rises, DCs flip from tolerogenic (TGF-β → Tregs) to inflammatory (IL-23 → Th17). The pact doesn't just fail — it inverts.
+      <div class="agreement-enforced">Enforced by: Tregs, IL-10, TGF-β, tolerogenic DCs, commensal butyrate</div>
+      <div class="agreement-enforced">Inverted by: barrier breach → DC reprogramming → IL-23 production → Th17 differentiation</div>
+    </div>
+  </div>
+  <div class="agreement" style="background: #F1EFE8;">
+    <div class="agreement-num" style="background: #888780;">3</div>
+    <div class="agreement-body">
+      <div class="agreement-title" style="color: #444441;">The structural ceasefire</div>
+      Fibroblasts remain quiescent. Repair activates only transiently after acute injury. When chronic inflammation produces sustained TL1A/TGF-β, fibroblasts activate into myofibroblasts and acquire autocrine survival loops. They become a new autonomous player who refuses to disband — a militia with institutional momentum.
+      <div class="agreement-enforced">Enforced by: absence of chronic activating signals</div>
+      <div class="agreement-enforced">Broken by: chronic TL1A/TGF-β → fibroblast autonomy → irreversible fibrosis</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── CASCADE ── -->
+<div class="cascade">
+  <div class="cascade-title">The coordination trap</div>
+  <div class="cascade-text">
+    Barrier weakens → more antigen pressure on tolerance → tolerance inverts (Tregs replaced by Th17) → chronic inflammation → fibroblast activation → structural remodeling → further barrier damage → more antigen → ... Each player is behaving rationally given what every other player is doing. No one can unilaterally return to the healthy equilibrium. The disease state is self-maintaining. Escaping the trap requires changing the payoff matrix for multiple players simultaneously — which is the mechanistic argument for combination therapy and early intervention before fibroblasts become autonomous.
+  </div>
+</div>
+
+</div>
+</body>
+</html>

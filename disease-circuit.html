@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disease Circuit Architectures</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600&family=Instrument+Serif&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: #F7F3EE; color: #1E2D3A; padding: 40px 24px 60px; }
+  .container { max-width: 900px; margin: 0 auto; }
+  h1 { font-family: 'Instrument Serif', Georgia, serif; font-size: 30px; font-weight: 400; margin-bottom: 4px; }
+  .subtitle { font-size: 14px; color: #8A9BAE; margin-bottom: 32px; line-height: 1.5; }
+  .axis-legend { display: flex; gap: 24px; margin-bottom: 28px; flex-wrap: wrap; }
+  .axis-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #5A6B7D; }
+  .axis-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .disease-section { margin-bottom: 40px; }
+  .disease-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; flex-wrap: wrap; }
+  .disease-name { font-family: 'Instrument Serif', Georgia, serif; font-size: 22px; font-weight: 400; }
+  .disease-badge { font-size: 11px; padding: 3px 10px; border-radius: 6px; font-weight: 500; }
+  .disease-desc { font-size: 13px; color: #5A6B7D; margin-bottom: 14px; line-height: 1.6; max-width: 760px; }
+  .circuit-wrap { background: #fff; border: 1px solid #E8E4DD; border-radius: 12px; padding: 20px; overflow-x: auto; }
+  .circuit-caption { font-size: 11px; color: #8A9BAE; margin-top: 10px; line-height: 1.5; font-style: italic; }
+  .takeaway { background: #E6F1FB; border: 1px solid #B5D4F4; border-radius: 10px; padding: 16px 20px; margin-top: 36px; }
+  .takeaway-title { font-size: 14px; font-weight: 600; color: #185FA5; margin-bottom: 4px; }
+  .takeaway-text { font-size: 13px; line-height: 1.65; color: #1E2D3A; }
+  svg text { font-family: 'DM Sans', sans-serif; }
+  /* Tab navigation */
+  .tab-nav { background: #fff; border-bottom: 1px solid #e0ded8; position: sticky; top: 0; z-index: 100; }
+  .tab-nav-inner { max-width: 960px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .tab-nav a { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.5px; color: #777; text-decoration: none; padding: 14px 14px 12px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .tab-nav a:hover { color: #111; border-bottom-color: #ccc; }
+  .tab-nav a.active { color: #111; border-bottom-color: #185FA5; }
+</style>
+</head>
+<body>
+<nav class="tab-nav">
+  <div class="tab-nav-inner">
+    <a href="index.html">Overview</a>
+    <a href="harrisons-journey.html">Harrison&rsquo;s Canyon</a>
+    <a href="town-bottom.html">The Town</a>
+    <a href="villus-accord.html">Villus Accord</a>
+    <a href="disease-circuit.html" class="active">Disease Circuit</a>
+    <a href="gut-game-theory.html">Gut D&eacute;tente</a>
+    <a href="appendix-calprotectin.html">Calprotectin</a>
+    <a href="appendix-dendritic.html">Dendritic Cells</a>
+    <a href="appendix-charts.html">Charts</a>
+  </div>
+</nav>
+<div class="container">
+
+<h1>Series circuit, parallel circuit, corrosive element</h1>
+<p class="subtitle">
+  A circuit-based framework for understanding why some immune diseases respond to monotherapy<br>
+  and others demand combination — and why timing matters differently across indications.
+</p>
+
+<div class="axis-legend">
+  <div class="axis-item"><div class="axis-dot" style="background:#6366F1"></div> Pathway node</div>
+  <div class="axis-item"><div class="axis-dot" style="background:#E8634F"></div> Tissue / structural component</div>
+  <div class="axis-item"><div class="axis-dot" style="background:#0D7377"></div> Feed-forward loop</div>
+  <div class="axis-item"><svg width="28" height="10"><line x1="0" y1="5" x2="28" y2="5" stroke="#1E2D3A" stroke-width="1.5"/></svg> Active path</div>
+  <div class="axis-item"><svg width="28" height="10"><line x1="0" y1="5" x2="28" y2="5" stroke="#1E2D3A" stroke-width="1.5" stroke-dasharray="4 3"/></svg> Weak / compensatory</div>
+</div>
+
+<!-- PSORIASIS -->
+<div class="disease-section">
+  <div class="disease-header">
+    <span class="disease-name">Psoriasis</span>
+    <span class="disease-badge" style="background:#EEEDFE;color:#534AB7">Near-series circuit</span>
+    <span class="disease-badge" style="background:#F1EFE8;color:#5F5E5A">Structurally passive tissue</span>
+  </div>
+  <p class="disease-desc">
+    Predominantly serial: IL-23 → Th17 → IL-17A/F → keratinocytes → plaque. Blocking IL-23 captures most of the signal. However, a minor IL-23-independent bypass exists — γδ T cells and ILC3s can produce IL-17F via IL-1β/IL-6, which is why bimekizumab (dual IL-17A/F) achieves higher PASI 100 rates than IL-23 blockade alone. No fibrosis or structural remodeling, but CD8+ TRM cells persist in resolved plaques and drive site-specific recurrence. Sustained IL-23 blockade may gradually deplete TRM (they depend on IL-23 for survival) — the basis for treatment-free remission data.
+  </p>
+  <div class="circuit-wrap">
+    <svg width="100%" viewBox="0 0 780 170">
+      <defs>
+        <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1.5L8 5L2 8.5" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+      <rect x="20" y="30" width="100" height="44" rx="8" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1"/>
+      <text x="70" y="56" text-anchor="middle" font-size="13" font-weight="500" fill="#3C3489">IL-23</text>
+      <line x1="120" y1="52" x2="168" y2="52" stroke="#1E2D3A" stroke-width="1.5" marker-end="url(#ah)"/>
+      <rect x="170" y="30" width="100" height="44" rx="8" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1"/>
+      <text x="220" y="56" text-anchor="middle" font-size="13" font-weight="500" fill="#3C3489">Th17</text>
+      <line x1="270" y1="52" x2="318" y2="52" stroke="#1E2D3A" stroke-width="1.5" marker-end="url(#ah)"/>
+      <rect x="320" y="30" width="120" height="44" rx="8" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1"/>
+      <text x="380" y="56" text-anchor="middle" font-size="13" font-weight="500" fill="#3C3489">IL-17A/F</text>
+      <line x1="440" y1="52" x2="488" y2="52" stroke="#1E2D3A" stroke-width="1.5" marker-end="url(#ah)"/>
+      <rect x="490" y="30" width="140" height="44" rx="8" fill="#FAECE7" stroke="#D85A30" stroke-width="1"/>
+      <text x="560" y="49" text-anchor="middle" font-size="12" font-weight="500" fill="#712B13">Keratinocytes</text>
+      <text x="560" y="63" text-anchor="middle" font-size="10" fill="#993C1D">(+ TRM memory)</text>
+      <line x1="630" y1="52" x2="678" y2="52" stroke="#1E2D3A" stroke-width="1.5" marker-end="url(#ah)"/>
+      <rect x="680" y="30" width="80" height="44" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="1"/>
+      <text x="720" y="56" text-anchor="middle" font-size="13" font-weight="500" fill="#444441">Plaque</text>
+      <!-- Minor bypass -->
+      <rect x="130" y="105" width="150" height="36" rx="8" fill="#EEEDFE" stroke="#7F77DD" stroke-width="0.5" stroke-dasharray="4 3"/>
+      <text x="205" y="120" text-anchor="middle" font-size="10" fill="#7F77DD">γδ T / ILC3</text>
+      <text x="205" y="132" text-anchor="middle" font-size="9" fill="#7F77DD">(IL-1β / IL-6 driven)</text>
+      <line x1="280" y1="123" x2="380" y2="74" stroke="#1E2D3A" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#ah)"/>
+      <text x="360" y="110" font-size="10" fill="#8A9BAE" font-style="italic">bypass — why bimekizumab > IL-23i</text>
+      <!-- Break point -->
+      <line x1="68" y1="80" x2="68" y2="155" stroke="#E8634F" stroke-width="1" stroke-dasharray="3 2"/>
+      <text x="70" y="166" text-anchor="middle" font-size="10" fill="#E8634F" font-weight="500">✕ Block here → ~90% of circuit off</text>
+    </svg>
+  </div>
+  <p class="circuit-caption">Near-series with a minor bypass. Structurally passive (no fibrosis) but immunologically memoried (TRM). Sustained IL-23 blockade may erase TRM → treatment-free remission potential.</p>
+</div>
+
+<!-- ATOPIC DERMATITIS -->
+<div class="disease-section">
+  <div class="disease-header">
+    <span class="disease-name">Atopic dermatitis</span>
+    <span class="disease-badge" style="background:#FAEEDA;color:#854F0B">Partially parallel</span>
+    <span class="disease-badge" style="background:#F1EFE8;color:#5F5E5A">Mildly active tissue</span>
+  </div>
+  <p class="disease-desc">
+    Dominated by type 2 (T2) inflammation: TSLP → Th2 → IL-4/IL-13, with IgE/mast cell and Th22/IL-22 branches running in partial parallel. IL-4Rα blockade (dupilumab) captures most of the T2 signal. Barrier defect (filaggrin) is constitutive in many patients and creates a mild feed-forward, but the skin remains structurally reversible — no fibrosis, no remodeling.
+  </p>
+  <div class="circuit-wrap">
+    <svg width="100%" viewBox="0 0 780 240">
+      <use href="#ah"/>
+      <!-- T2 bracket -->
+      <rect x="12" y="14" width="450" height="196" rx="12" fill="none" stroke="#854F0B" stroke-width="1.5" stroke-dasharray="6 4"/>
+      <text x="24" y="32" font-size="11" font-weight="500" fill="#854F0B">Type 2 inflammation</text>
+      <!-- Main path -->
+      <rect x="30" y="50" width="90" height="44" rx="8" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1"/>
+      <text x="75" y="76" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489">TSLP</text>
+      <line x1="120" y1="72" x2="158" y2="72" stroke="#1E2D3A" stroke-width="1.5" marker-end="url(#ah)"/>
+      <rect x="160" y="50" width="110" height="44" rx="8" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1"/>
+      <text x="215" y="76" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489">Th2 / IL-4Rα</text>
+      <line x1="270" y1="72" x2="308" y2="72" stroke="#1E2D3A" stroke-width="1.5" marker-end="url(#ah)"/>
+      <rect x="310" y="50" width="120" height="44" rx="8" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1"/>
+      <text x="370" y="76" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489">IL-4 / IL-13</text>
+      <line x1="430" y1="72" x2="488" y2="72" stroke="#1E2D3A" stroke-width="1.5" marker-end="url(#ah)"/>
+      <rect x="490" y="50" width="130" height="44" rx="8" fill="#FAECE7" stroke="#D85A30" stroke-width="1"/>
+      <text x="555" y="76" text-anchor="middle" font-size="12" font-weight="500" fill="#712B13">Keratinocytes</text>
+      <line x1="620" y1="72" x2="668" y2="72" stroke="#1E2D3A" stroke-width="1.5" marker-end="url(#ah)"/>
+      <rect x="670" y="50" width="90" height="44" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="1"/>
+      <text x="715" y="76" text-anchor="middle" font-size="12" font-weight="500" fill="#444441">Eczema</text>
+      <!-- Th22 branch -->
+      <rect x="160" y="118" width="110" height="34" rx="8" fill="#EEEDFE" stroke="#7F77DD" stroke-width="0.5" stroke-dasharray="4 3"/>
+      <text x="215" y="139" text-anchor="middle" font-size="10" fill="#7F77DD">Th22 / IL-22</text>
+      <line x1="75" y1="94" x2="75" y2="135" stroke="#1E2D3A" stroke-width="1" stroke-dasharray="4 3"/>
+      <line x1="75" y1="135" x2="158" y2="135" stroke="#1E2D3A" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#ah)"/>
+      <line x1="270" y1="135" x2="490" y2="90" stroke="#1E2D3A" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#ah)"/>
+      <!-- IgE branch -->
+      <rect x="160" y="168" width="120" height="34" rx="8" fill="#EEEDFE" stroke="#7F77DD" stroke-width="0.5" stroke-dasharray="4 3"/>
+      <text x="220" y="189" text-anchor="middle" font-size="10" fill="#7F77DD">IgE / mast cells</text>
+      <line x1="75" y1="135" x2="75" y2="185" stroke="#1E2D3A" stroke-width="1" stroke-dasharray="4 3"/>
+      <line x1="75" y1="185" x2="158" y2="185" stroke="#1E2D3A" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#ah)"/>
+      <line x1="280" y1="185" x2="490" y2="94" stroke="#1E2D3A" stroke-width="0.8" stroke-dasharray="4 3" marker-end="url(#ah)"/>
+      <!-- Filaggrin feedback — clean path below everything -->
+      <rect x="530" y="118" width="120" height="34" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1"/>
+      <text x="590" y="139" text-anchor="middle" font-size="10" font-weight="500" fill="#085041">Filaggrin defect</text>
+      <path d="M590 152 L590 222 L75 222 L75 94" fill="none" stroke="#0D7377" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#ah)"/>
+      <text x="335" y="225" dominant-baseline="hanging" text-anchor="middle" font-size="10" fill="#0D7377" font-style="italic">Barrier leak → mild feed-forward (no fibrosis)</text>
+    </svg>
+  </div>
+  <p class="circuit-caption">T2-dominant with weaker parallel branches. Barrier defect is constitutive but tissue remains structurally reversible. IL-4Rα blockade captures the bulk of T2 signal.</p>
+</div>
+
+<!-- IBD -->
+<div class="disease-section">
+  <div class="disease-header">
+    <span class="disease-name">IBD (ileal Crohn's)</span>
+    <span class="disease-badge" style="background:#FCEBEB;color:#A32D2D">Parallel + cross-talk + corrosion</span>
+    <span class="disease-badge" style="background:#FAECE7;color:#993C1D">Actively destructive tissue</span>
+  </div>
+  <p class="disease-desc">
+    Multiple immune pathways in true parallel with active compensatory cross-talk — block one and others upregulate. The tissue is a co-conspirator: constitutive innate barrier defects (including Paneth cell α-defensin deficiency) allow microbial translocation that initiates and perpetuates inflammation. The microbiome is a disease driver. Chronic inflammation triggers fibrosis and structural remodeling that is no longer immunologically reversible. Two windows close: immunological (effector memory) and structural (fibrosis/stricture). The structural window closes faster and more permanently.
+  </p>
+  <div class="circuit-wrap">
+    <svg width="100%" viewBox="0 0 780 320">
+      <use href="#ah"/>
+      <!-- Barrier defect -->
+      <rect x="20" y="10" width="150" height="44" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1"/>
+      <text x="95" y="28" text-anchor="middle" font-size="11" font-weight="500" fill="#085041">Barrier defect</text>
+      <text x="95" y="42" text-anchor="middle" font-size="9" fill="#0F6E56">(↓ defensins, dysbiosis)</text>
+      <line x1="170" y1="32" x2="208" y2="32" stroke="#0D7377" stroke-width="1.5" marker-end="url(#ah)"/>
+      <rect x="210" y="10" width="150" height="44" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1"/>
+      <text x="285" y="28" text-anchor="middle" font-size="11" font-weight="500" fill="#085041">Microbial invasion</text>
+      <text x="285" y="42" text-anchor="middle" font-size="9" fill="#0F6E56">(crypt / lamina propria)</text>
+      <!-- Fan out -->
+      <line x1="360" y1="32" x2="410" y2="32" stroke="#1E2D3A" stroke-width="1.5"/>
+      <line x1="410" y1="32" x2="410" y2="245" stroke="#1E2D3A" stroke-width="1"/>
+      <!-- TNF -->
+      <line x1="410" y1="75" x2="448" y2="75" stroke="#1E2D3A" stroke-width="1.5" marker-end="url(#ah)"/>
+      <rect x="450" y="53" width="110" height="44" rx="8" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1"/>
+      <text x="505" y="79" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489">TNF</text>
+      <!-- IL-23 -->
+      <line x1="410" y1="135" x2="448" y2="135" stroke="#1E2D3A" stroke-width="1.5" marker-end="url(#ah)"/>
+      <rect x="450" y="113" width="140" height="44" rx="8" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1"/>
+      <text x="520" y="139" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489">IL-23 → Th17</text>
+      <!-- TL1A -->
+      <line x1="410" y1="195" x2="448" y2="195" stroke="#1E2D3A" stroke-width="1.5" marker-end="url(#ah)"/>
+      <rect x="450" y="173" width="140" height="44" rx="8" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1"/>
+      <text x="520" y="191" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489">TL1A / DR3</text>
+      <text x="520" y="205" text-anchor="middle" font-size="10" fill="#7F77DD">(immune + fibrosis)</text>
+      <!-- α4β7 -->
+      <line x1="410" y1="245" x2="448" y2="245" stroke="#1E2D3A" stroke-width="1.5" marker-end="url(#ah)"/>
+      <rect x="450" y="223" width="140" height="44" rx="8" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1"/>
+      <text x="520" y="243" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489">α4β7 homing</text>
+      <text x="520" y="257" text-anchor="middle" font-size="10" fill="#7F77DD">(T cell trafficking)</text>
+      <!-- Cross-talk -->
+      <line x1="510" y1="97" x2="510" y2="113" stroke="#8A9BAE" stroke-width="0.8" stroke-dasharray="3 2"/>
+      <line x1="510" y1="157" x2="510" y2="173" stroke="#8A9BAE" stroke-width="0.8" stroke-dasharray="3 2"/>
+      <line x1="510" y1="217" x2="510" y2="223" stroke="#8A9BAE" stroke-width="0.8" stroke-dasharray="3 2"/>
+      <text x="530" y="108" font-size="8" fill="#8A9BAE">↕ cross-talk</text>
+      <text x="530" y="168" font-size="8" fill="#8A9BAE">↕ cross-talk</text>
+      <!-- Converge -->
+      <line x1="560" y1="75" x2="640" y2="75" stroke="#1E2D3A" stroke-width="1"/>
+      <line x1="590" y1="135" x2="640" y2="135" stroke="#1E2D3A" stroke-width="1"/>
+      <line x1="590" y1="195" x2="640" y2="195" stroke="#1E2D3A" stroke-width="1"/>
+      <line x1="590" y1="245" x2="640" y2="245" stroke="#1E2D3A" stroke-width="1"/>
+      <line x1="640" y1="75" x2="640" y2="245" stroke="#1E2D3A" stroke-width="1"/>
+      <line x1="640" y1="160" x2="688" y2="160" stroke="#1E2D3A" stroke-width="1.5" marker-end="url(#ah)"/>
+      <!-- Tissue damage -->
+      <rect x="690" y="125" width="75" height="70" rx="8" fill="#FAECE7" stroke="#D85A30" stroke-width="1.5"/>
+      <text x="727" y="152" text-anchor="middle" font-size="11" font-weight="500" fill="#712B13">Mucosal</text>
+      <text x="727" y="166" text-anchor="middle" font-size="11" font-weight="500" fill="#712B13">damage</text>
+      <text x="727" y="184" text-anchor="middle" font-size="10" fill="#993C1D">+ fibrosis</text>
+      <!-- Feed-forward (drawn first so it appears behind the box) -->
+      <path d="M727 195 Q727 290 420 295 Q95 300 95 54" fill="none" stroke="#E8634F" stroke-width="1.3" stroke-dasharray="5 3" marker-end="url(#ah)"/>
+      <text x="410" y="310" text-anchor="middle" font-size="10" font-weight="500" fill="#E8634F">Feed-forward: damage → more barrier dysfunction → more invasion → more inflammation</text>
+      <!-- Irreversibility -->
+      <rect x="693" y="255" width="68" height="34" rx="6" fill="#FCEBEB" stroke="#E24B4A" stroke-width="1"/>
+      <text x="727" y="269" text-anchor="middle" font-size="9" font-weight="500" fill="#A32D2D">Irreversible</text>
+      <text x="727" y="281" text-anchor="middle" font-size="9" font-weight="500" fill="#A32D2D">stricture</text>
+      <line x1="727" y1="195" x2="727" y2="253" stroke="#E24B4A" stroke-width="1" marker-end="url(#ah)"/>
+    </svg>
+  </div>
+  <p class="circuit-caption">True parallel with compensatory cross-talk, constitutive barrier defect, and a corrosive element (fibrosis) that makes damage irreversible. Monotherapy blocks one wire; others compensate and corrosion continues. Requires combination + early aggressive intervention.</p>
+</div>
+
+<!-- RA -->
+<div class="disease-section">
+  <div class="disease-header">
+    <span class="disease-name">Rheumatoid arthritis</span>
+    <span class="disease-badge" style="background:#FAEEDA;color:#854F0B">Parallel circuit</span>
+    <span class="disease-badge" style="background:#FAECE7;color:#993C1D">Moderately active tissue</span>
+  </div>
+  <p class="disease-desc">
+    Fully parallel immune pathways (TNF, IL-6, T cell costimulation, B cells) — four distinct mechanisms validated by approved drugs. The synovium is a moderate co-participant: fibroblast-like synoviocytes (FLS) can become autonomously invasive as "pannus," driving joint erosion independent of the initiating immune trigger. Less compartmentalized than the gut but the pannus creates a structural window analogous to intestinal fibrosis. JAK inhibition sits at a common junction box across pathways.
+  </p>
+  <div class="circuit-wrap">
+    <svg width="100%" viewBox="0 0 780 250">
+      <use href="#ah"/>
+      <rect x="20" y="75" width="120" height="44" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="1"/>
+      <text x="80" y="95" text-anchor="middle" font-size="11" font-weight="500" fill="#444441">Autoimmune</text>
+      <text x="80" y="109" text-anchor="middle" font-size="11" font-weight="500" fill="#444441">trigger</text>
+      <line x1="140" y1="97" x2="180" y2="97" stroke="#1E2D3A" stroke-width="1.5"/>
+      <line x1="180" y1="35" x2="180" y2="200" stroke="#1E2D3A" stroke-width="1"/>
+      <!-- TNF -->
+      <line x1="180" y1="35" x2="218" y2="35" stroke="#1E2D3A" stroke-width="1.5" marker-end="url(#ah)"/>
+      <rect x="220" y="13" width="100" height="44" rx="8" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1"/>
+      <text x="270" y="39" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489">TNF</text>
+      <!-- IL-6 -->
+      <line x1="180" y1="87" x2="218" y2="87" stroke="#1E2D3A" stroke-width="1.5" marker-end="url(#ah)"/>
+      <rect x="220" y="65" width="100" height="44" rx="8" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1"/>
+      <text x="270" y="91" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489">IL-6</text>
+      <!-- CTLA-4 -->
+      <line x1="180" y1="142" x2="218" y2="142" stroke="#1E2D3A" stroke-width="1.5" marker-end="url(#ah)"/>
+      <rect x="220" y="120" width="130" height="44" rx="8" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1"/>
+      <text x="285" y="146" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489">T cell / CTLA-4</text>
+      <!-- B cell -->
+      <line x1="180" y1="200" x2="218" y2="200" stroke="#1E2D3A" stroke-width="1.5" marker-end="url(#ah)"/>
+      <rect x="220" y="178" width="130" height="44" rx="8" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1"/>
+      <text x="285" y="198" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489">B cells / CD20</text>
+      <text x="285" y="212" text-anchor="middle" font-size="10" fill="#7F77DD">(+ autoantibodies)</text>
+      <!-- Cross-talk -->
+      <line x1="300" y1="57" x2="300" y2="65" stroke="#8A9BAE" stroke-width="0.8" stroke-dasharray="3 2"/>
+      <line x1="300" y1="109" x2="300" y2="120" stroke="#8A9BAE" stroke-width="0.8" stroke-dasharray="3 2"/>
+      <line x1="300" y1="164" x2="300" y2="178" stroke="#8A9BAE" stroke-width="0.8" stroke-dasharray="3 2"/>
+      <!-- Converge -->
+      <line x1="320" y1="35" x2="420" y2="35" stroke="#1E2D3A" stroke-width="1"/>
+      <line x1="320" y1="87" x2="420" y2="87" stroke="#1E2D3A" stroke-width="1"/>
+      <line x1="350" y1="142" x2="420" y2="142" stroke="#1E2D3A" stroke-width="1"/>
+      <line x1="350" y1="200" x2="420" y2="200" stroke="#1E2D3A" stroke-width="1"/>
+      <line x1="420" y1="35" x2="420" y2="200" stroke="#1E2D3A" stroke-width="1"/>
+      <line x1="420" y1="117" x2="458" y2="117" stroke="#1E2D3A" stroke-width="1.5" marker-end="url(#ah)"/>
+      <!-- Synovium -->
+      <rect x="460" y="80" width="130" height="74" rx="8" fill="#FAECE7" stroke="#D85A30" stroke-width="1.5"/>
+      <text x="525" y="105" text-anchor="middle" font-size="12" font-weight="500" fill="#712B13">Synovium</text>
+      <text x="525" y="121" text-anchor="middle" font-size="10" fill="#993C1D">(FLS activation)</text>
+      <text x="525" y="143" text-anchor="middle" font-size="10" fill="#993C1D">→ pannus</text>
+      <line x1="590" y1="117" x2="638" y2="117" stroke="#1E2D3A" stroke-width="1.5" marker-end="url(#ah)"/>
+      <rect x="640" y="95" width="120" height="44" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="1"/>
+      <text x="700" y="115" text-anchor="middle" font-size="11" font-weight="500" fill="#444441">Joint erosion</text>
+      <text x="700" y="129" text-anchor="middle" font-size="10" fill="#5F5E5A">(irreversible)</text>
+      <!-- Pannus feedback -->
+      <path d="M525 154 L525 230 L190 230 L190 200" fill="none" stroke="#E8634F" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#ah)"/>
+      <text x="360" y="238" dominant-baseline="hanging" text-anchor="middle" font-size="10" font-weight="500" fill="#E8634F">Pannus becomes autonomous — FLS drive erosion independent of immune trigger</text>
+    </svg>
+  </div>
+  <p class="circuit-caption">Fully parallel (4 validated mechanisms). Moderately active tissue — pannus creates a structural window like fibrosis in Crohn's but tissue is less compartmentalized. JAK inhibition = junction box across paths.</p>
+</div>
+
+<!-- TAKEAWAY -->
+<div class="takeaway">
+  <div class="takeaway-title">Framework summary</div>
+  <p class="takeaway-text">
+    <strong>PsO</strong> = near-series, structurally passive but immunologically memoried (TRM) → monotherapy sufficient; sustained blockade may erase tissue memory (near-cure).<br><br>
+    <strong>AD</strong> = partially parallel (T2-dominant), mildly active tissue (filaggrin) → dominant-path blockade usually enough; barrier creates mild feed-forward but no structural irreversibility.<br><br>
+    <strong>RA</strong> = fully parallel, moderately active tissue (pannus) → multiple validated mechanisms; structural window creates urgency for treat-to-target. JAK as junction-box alternative.<br><br>
+    <strong>IBD</strong> = fully parallel with cross-talk, constitutive barrier defect + microbiome co-driver + irreversible fibrosis → combination therapy AND early aggressive intervention required to outrun both immunological and structural windows. The most complex circuit.
+  </p>
+</div>
+
+</div>
+</body>
+</html>
