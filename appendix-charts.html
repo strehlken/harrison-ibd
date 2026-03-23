@@ -16,7 +16,8 @@
   .content { max-width: 720px; margin: 0 auto; padding: 0 24px 80px; }
   .chart-section { margin-bottom: 48px; }
   .chart-title { font-size: 16px; font-weight: 600; color: #111; margin-bottom: 4px; }
-  .chart-subtitle { font-size: 13px; color: #888; margin-bottom: 16px; }
+  .chart-subtitle { font-size: 13px; color: #888; margin-bottom: 6px; }
+  .chart-intro { font-family: 'Source Serif 4', Georgia, serif; font-size: 15px; line-height: 1.7; color: #444; margin-bottom: 14px; }
   .chart-wrap { background: #fff; border: 1px solid #E8E4DD; border-radius: 10px; padding: 24px 20px 16px; }
   .chart-note { font-family: 'Source Serif 4', Georgia, serif; font-size: 15px; line-height: 1.7; color: #444; margin-top: 14px; }
   svg text { font-family: 'DM Sans', sans-serif; }
@@ -30,7 +31,9 @@
   .ref-line { stroke: #E24B4A; stroke-width: 0.8; stroke-dasharray: 4 3; }
   .ref-label { font-size: 9px; fill: #E24B4A; }
   .normal-zone { fill: #E1F5EE; opacity: 0.4; }
-  /* Tab navigation */
+  .callout-box { background: #FDF6F5; border: 1px solid #F0C4B3; border-radius: 10px; padding: 18px 22px; margin-bottom: 48px; }
+  .callout-title { font-size: 14px; font-weight: 600; color: #993C1D; margin-bottom: 6px; }
+  .callout-text { font-family: 'Source Serif 4', Georgia, serif; font-size: 15px; line-height: 1.7; color: #444; }
   .tab-nav { background: #fff; border-bottom: 1px solid #e0ded8; position: sticky; top: 0; z-index: 100; }
   .tab-nav-inner { max-width: 960px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .tab-nav a { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.5px; color: #777; text-decoration: none; padding: 14px 14px 12px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
@@ -63,169 +66,343 @@
 <div class="content">
 
 <!-- ═══════════════════════════════════════ -->
-<!-- CALPROTECTIN -->
+<!-- 1. CALPROTECTIN -->
 <!-- ═══════════════════════════════════════ -->
 <div class="chart-section">
   <div class="chart-title">Fecal calprotectin</div>
   <div class="chart-subtitle">The dead-conscript count &middot; &mu;g/g stool &middot; Normal &lt; 50</div>
+  <p class="chart-intro">When the Wall-Folk are in distress, they scream &mdash; a chemical called IL-8 that summons neutrophils from the bloodstream. These conscripts live for hours. They arrive, dump their calprotectin cargo into the tissue, and die. The calprotectin washes downstream and out of the body. Measuring it in stool is like counting spent shell casings washed out of the canyon. It is the smoke above the city.</p>
   <div class="chart-wrap">
     <svg width="100%" viewBox="0 0 660 280">
-      <!-- Grid -->
-      <line x1="80" y1="30" x2="80" y2="220" stroke="#EDEBE6" stroke-width="0.5"/>
-      <line x1="80" y1="220" x2="620" y2="220" stroke="#ccc" stroke-width="0.8"/>
-
-      <!-- Y axis grid lines and labels -->
-      <line x1="80" y1="220" x2="620" y2="220" class="grid-line"/>
-      <text x="72" y="224" text-anchor="end" class="axis-label">0</text>
-
-      <line x1="80" y1="176" x2="620" y2="176" class="grid-line"/>
-      <text x="72" y="180" text-anchor="end" class="axis-label">1,000</text>
-
-      <line x1="80" y1="132" x2="620" y2="132" class="grid-line"/>
-      <text x="72" y="136" text-anchor="end" class="axis-label">2,000</text>
-
-      <line x1="80" y1="88" x2="620" y2="88" class="grid-line"/>
-      <text x="72" y="92" text-anchor="end" class="axis-label">3,000</text>
-
-      <line x1="80" y1="44" x2="620" y2="44" class="grid-line"/>
-      <text x="72" y="48" text-anchor="end" class="axis-label">4,000</text>
-
-      <!-- Normal threshold line -->
-      <line x1="80" y1="217.8" x2="620" y2="217.8" class="ref-line"/>
-      <text x="625" y="221" class="ref-label">50 (normal)</text>
-
-      <!-- Data points and line -->
-      <!-- Jun 2023: 1260 → y = 220 - (1260/4500)*176 = 220 - 49.3 = 170.7 -->
-      <!-- Dec 2023: 1100 → y = 220 - (1100/4500)*176 = 220 - 43.0 = 177.0 -->
-      <!-- Aug 2024: 789 → y = 220 - (789/4500)*176 = 220 - 30.9 = 189.1 -->
-      <!-- Mar 2025: 4300 → y = 220 - (4300/4500)*176 = 220 - 168.2 = 51.8 -->
-      <!-- Nov 2025: 25 → y = 220 - (25/4500)*176 = 220 - 0.98 = 219.0 -->
-
-      <!-- X positions: 5 points spread from 120 to 580 -->
-      <polyline points="140,170.7 240,177.0 340,189.1 440,51.8 560,219.0"
-        fill="none" stroke="#E24B4A" stroke-width="2" stroke-linejoin="round"/>
-
-      <!-- Data dots -->
-      <circle cx="140" cy="170.7" r="5" fill="#E24B4A"/>
-      <circle cx="240" cy="177.0" r="5" fill="#E24B4A"/>
-      <circle cx="340" cy="189.1" r="5" fill="#E24B4A"/>
-      <circle cx="440" cy="51.8" r="6" fill="#A32D2D" stroke="#fff" stroke-width="2"/>
-      <circle cx="560" cy="219.0" r="6" fill="#0F6E56" stroke="#fff" stroke-width="2"/>
-
-      <!-- Data labels -->
-      <text x="140" y="162" text-anchor="middle" class="data-label">1,260</text>
-      <text x="240" y="169" text-anchor="middle" class="data-label">1,100</text>
-      <text x="340" y="181" text-anchor="middle" class="data-label">789</text>
-      <text x="440" y="44" text-anchor="middle" class="annotation-bad">4,300</text>
-      <text x="560" y="211" text-anchor="middle" class="annotation-good">25</text>
-
-      <!-- X axis labels -->
-      <text x="140" y="240" text-anchor="middle" class="axis-label">Jun 2023</text>
-      <text x="240" y="240" text-anchor="middle" class="axis-label">Dec 2023</text>
-      <text x="340" y="240" text-anchor="middle" class="axis-label">Aug 2024</text>
-      <text x="440" y="240" text-anchor="middle" class="axis-label-bold">Mar 2025</text>
-      <text x="560" y="240" text-anchor="middle" class="axis-label-bold">Nov 2025</text>
-
-      <!-- Annotations -->
-      <text x="440" y="265" text-anchor="middle" class="annotation-bad">Siege</text>
-      <text x="560" y="265" text-anchor="middle" class="annotation-good">Ceasefire</text>
-
-      <!-- Treatment arrow -->
-      <line x1="475" y1="140" x2="525" y2="140" stroke="#185FA5" stroke-width="1.2" marker-end="url(#blue-arrow)"/>
-      <text x="570" y="143" text-anchor="middle" class="annotation">Risankizumab</text>
-
       <defs>
         <marker id="blue-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
           <path d="M2 2L8 5L2 8" fill="none" stroke="#185FA5" stroke-width="1.5" stroke-linecap="round"/>
         </marker>
       </defs>
+      <line x1="80" y1="30" x2="80" y2="220" stroke="#EDEBE6" stroke-width="0.5"/>
+      <line x1="80" y1="220" x2="620" y2="220" stroke="#ccc" stroke-width="0.8"/>
+      <line x1="80" y1="220" x2="620" y2="220" class="grid-line"/>
+      <text x="72" y="224" text-anchor="end" class="axis-label">0</text>
+      <line x1="80" y1="176" x2="620" y2="176" class="grid-line"/>
+      <text x="72" y="180" text-anchor="end" class="axis-label">1,000</text>
+      <line x1="80" y1="132" x2="620" y2="132" class="grid-line"/>
+      <text x="72" y="136" text-anchor="end" class="axis-label">2,000</text>
+      <line x1="80" y1="88" x2="620" y2="88" class="grid-line"/>
+      <text x="72" y="92" text-anchor="end" class="axis-label">3,000</text>
+      <line x1="80" y1="44" x2="620" y2="44" class="grid-line"/>
+      <text x="72" y="48" text-anchor="end" class="axis-label">4,000</text>
+      <line x1="80" y1="217.8" x2="620" y2="217.8" class="ref-line"/>
+      <text x="625" y="221" class="ref-label">50 (normal)</text>
+      <polyline points="140,170.7 240,177.0 340,189.1 440,51.8 560,219.0"
+        fill="none" stroke="#E24B4A" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="140" cy="170.7" r="5" fill="#E24B4A"/>
+      <circle cx="240" cy="177.0" r="5" fill="#E24B4A"/>
+      <circle cx="340" cy="189.1" r="5" fill="#E24B4A"/>
+      <circle cx="440" cy="51.8" r="6" fill="#A32D2D" stroke="#fff" stroke-width="2"/>
+      <circle cx="560" cy="219.0" r="6" fill="#0F6E56" stroke="#fff" stroke-width="2"/>
+      <text x="140" y="162" text-anchor="middle" class="data-label">1,260</text>
+      <text x="240" y="169" text-anchor="middle" class="data-label">1,100</text>
+      <text x="340" y="181" text-anchor="middle" class="data-label">789</text>
+      <text x="440" y="44" text-anchor="middle" class="annotation-bad">4,300</text>
+      <text x="560" y="211" text-anchor="middle" class="annotation-good">25</text>
+      <text x="140" y="240" text-anchor="middle" class="axis-label">Jun 2023</text>
+      <text x="240" y="240" text-anchor="middle" class="axis-label">Dec 2023</text>
+      <text x="340" y="240" text-anchor="middle" class="axis-label">Aug 2024</text>
+      <text x="440" y="240" text-anchor="middle" class="axis-label-bold">Mar 2025</text>
+      <text x="560" y="240" text-anchor="middle" class="axis-label-bold">Nov 2025</text>
+      <text x="440" y="265" text-anchor="middle" class="annotation-bad">Siege</text>
+      <text x="560" y="265" text-anchor="middle" class="annotation-good">Ceasefire</text>
+      <line x1="475" y1="140" x2="525" y2="140" stroke="#185FA5" stroke-width="1.2" marker-end="url(#blue-arrow)"/>
+      <text x="570" y="143" text-anchor="middle" class="annotation">Risankizumab</text>
     </svg>
   </div>
-  <p class="chart-note">The smoke above the canyon. Calprotectin measures dead neutrophils washing out of the intestine. A level of 4,300 in March 2025 triggered the colonoscopy that found pancolonic inflammation. Eight months after starting risankizumab: 25. The conscripts have stopped coming.</p>
+  <p class="chart-note">Eight months after starting risankizumab: 25. The conscripts have stopped coming.</p>
 </div>
 
 <!-- ═══════════════════════════════════════ -->
-<!-- WBC -->
+<!-- CALPROTECTIN SPIKE CALLOUT -->
+<!-- ═══════════════════════════════════════ -->
+<div class="callout-box">
+  <div class="callout-title">What caused the spike from 789 to 4,300?</div>
+  <p class="callout-text">The calprotectin had been running between 789 and 1,260 for nearly two years on Pentasa &mdash; a chronic smolder, the canyon at war but not in crisis. Then in March 2025, it jumped fivefold. What happened?</p>
+  <p class="callout-text" style="margin-top:10px">The honest answer: usually, we don&rsquo;t know. An intercurrent infection &mdash; a stomach bug, a norovirus &mdash; can act like a match thrown on dry kindling, temporarily overwhelming an already-strained barrier. Antibiotics for an unrelated illness can devastate the Commensal population, starving the Peacekeepers of their butyrate supply. Even ibuprofen for a fever can directly damage the intestinal wall in ways that are trivial in a healthy gut but destabilizing in an inflamed one.</p>
+  <p class="callout-text" style="margin-top:10px">It is also possible that no external trigger was needed at all. Crohn&rsquo;s can smolder at one level and then step-change as the disease outgrows a therapy that was barely holding. The system was unstable. Unstable systems don&rsquo;t always need a push to fall; sometimes they simply run out of counterbalance. This is one of the most anxiety-producing aspects of IBD for families &mdash; &ldquo;what did we do wrong?&rdquo; &mdash; and the honest answer is usually: nothing.</p>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- 2. ABSOLUTE NEUTROPHIL COUNT -->
+<!-- ═══════════════════════════════════════ -->
+<div class="chart-section">
+  <div class="chart-title">Absolute neutrophil count</div>
+  <div class="chart-subtitle">The conscript reserve &middot; &times;1000/&mu;L &middot; Normal 1.8&ndash;5.6 (Yale) / 1.8&ndash;7.8 (Sinai)</div>
+  <p class="chart-intro">If calprotectin measures dead conscripts in the waste stream, ANC measures live conscripts in the blood &mdash; the standing army at the staging area, mobilized by the Marrow and waiting for deployment. During a severe flare, the canyon consumes neutrophils faster than the Marrow can replace them. The blood count can actually <em>drop</em> even as the tissue is flooded with dying conscripts. It is like measuring soldiers at the staging area versus spent shell casings on the battlefield: during a massive battle, the staging area empties out <em>because</em> the battle is consuming them.</p>
+  <div class="chart-wrap">
+    <svg width="100%" viewBox="0 0 660 220">
+      <!-- Normal zone: 1.8 to 7.8 on 0-9 scale -->
+      <!-- chart y: 30 to 170, 140px for 9 units, per unit = 15.56 -->
+      <!-- 1.8→142, 5.6→82.9, 7.8→48.6 -->
+      <rect x="80" y="48.6" width="540" height="93.4" class="normal-zone"/>
+      <line x1="80" y1="170" x2="620" y2="170" stroke="#ccc" stroke-width="0.8"/>
+      <text x="72" y="174" text-anchor="end" class="axis-label">0</text>
+      <line x1="80" y1="138.9" x2="620" y2="138.9" class="grid-line"/>
+      <text x="72" y="143" text-anchor="end" class="axis-label">2</text>
+      <line x1="80" y1="107.8" x2="620" y2="107.8" class="grid-line"/>
+      <text x="72" y="112" text-anchor="end" class="axis-label">4</text>
+      <line x1="80" y1="76.7" x2="620" y2="76.7" class="grid-line"/>
+      <text x="72" y="81" text-anchor="end" class="axis-label">6</text>
+      <line x1="80" y1="45.6" x2="620" y2="45.6" class="grid-line"/>
+      <text x="72" y="50" text-anchor="end" class="axis-label">8</text>
+
+      <!-- Yale upper normal 5.64 -->
+      <line x1="80" y1="82.2" x2="350" y2="82.2" class="ref-line" style="stroke:#0F6E56"/>
+      <text x="82" y="78" style="font-size:9px;fill:#0F6E56">5.64 (Yale ceiling)</text>
+
+      <!-- Data: Aug24=6.31, Feb25=5.50, Apr25=4.67 | May25≈3.9, Jun25≈2.5, Nov25≈3.0 -->
+      <!-- 6.31→71.8, 5.50→84.4, 4.67→97.4, 3.9→109.3, 2.5→131.1, 3.0→123.3 -->
+      <polyline points="120,71.8 230,84.4 330,97.4 410,109.3 480,131.1 590,123.3"
+        fill="none" stroke="#E8634F" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="120" cy="71.8" r="4" fill="#E8634F"/>
+      <circle cx="230" cy="84.4" r="4" fill="#E8634F"/>
+      <circle cx="330" cy="97.4" r="4" fill="#E8634F"/>
+      <circle cx="410" cy="109.3" r="4" fill="#185FA5"/>
+      <circle cx="480" cy="131.1" r="4" fill="#185FA5"/>
+      <circle cx="590" cy="123.3" r="5" fill="#0F6E56" stroke="#fff" stroke-width="2"/>
+
+      <text x="120" y="64" text-anchor="middle" class="data-label">6.31</text>
+      <text x="230" y="77" text-anchor="middle" class="data-label">5.50</text>
+      <text x="330" y="90" text-anchor="middle" class="data-label">4.67</text>
+      <text x="410" y="102" text-anchor="middle" class="data-label">3.9</text>
+      <text x="480" y="124" text-anchor="middle" class="data-label">2.5</text>
+      <text x="590" y="116" text-anchor="middle" class="annotation-good">3.0</text>
+
+      <text x="120" y="188" text-anchor="middle" class="axis-label">Aug 2024</text>
+      <text x="230" y="188" text-anchor="middle" class="axis-label">Feb 2025</text>
+      <text x="330" y="188" text-anchor="middle" class="axis-label">Apr 2025</text>
+      <text x="410" y="188" text-anchor="middle" class="axis-label">May 2025</text>
+      <text x="480" y="188" text-anchor="middle" class="axis-label">Jun 2025</text>
+      <text x="590" y="188" text-anchor="middle" class="axis-label-bold">Nov 2025</text>
+
+      <text x="220" y="205" text-anchor="middle" style="font-size:9px;fill:#E8634F">Yale</text>
+      <text x="500" y="205" text-anchor="middle" style="font-size:9px;fill:#185FA5">Mt. Sinai</text>
+    </svg>
+  </div>
+  <p class="chart-note">The reserve shrinks steadily from above-normal to solidly mid-range. By November 2025, the Marrow is producing conscripts at peacetime rates. The staging area is quiet because the canyon is no longer consuming them.</p>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- 3. WBC (EXTENDED) -->
 <!-- ═══════════════════════════════════════ -->
 <div class="chart-section">
   <div class="chart-title">White blood cell count</div>
-  <div class="chart-subtitle">The body&rsquo;s overall mobilization &middot; &times;1000/&mu;L &middot; Normal 4.6&ndash;10.4</div>
+  <div class="chart-subtitle">The body&rsquo;s overall mobilization &middot; &times;1000/&mu;L &middot; Normal 4.5&ndash;11.4</div>
+  <p class="chart-intro">The broadest measure of the Marrow&rsquo;s output. WBC counts every immune cell type in the blood &mdash; conscripts, soldiers, Taster precursors, Peacekeepers, all of them. When the canyon is at war, the Marrow runs hot and the count rises. When the fighting subsides, production cools.</p>
   <div class="chart-wrap">
     <svg width="100%" viewBox="0 0 660 220">
-      <!-- Normal zone -->
-      <rect x="80" y="44" width="540" height="116" class="normal-zone"/>
+      <!-- Normal zone: 4.5 to 11.4 on 2-14 range -->
+      <!-- chart y: 30 to 170, 140px for 12 units, per unit = 11.67 -->
+      <!-- 4.5→140.8, 11.4→60.3 -->
+      <rect x="80" y="60.3" width="560" height="80.5" class="normal-zone"/>
+      <line x1="80" y1="170" x2="640" y2="170" stroke="#ccc" stroke-width="0.8"/>
 
-      <!-- Grid -->
-      <line x1="80" y1="160" x2="620" y2="160" stroke="#ccc" stroke-width="0.8"/>
+      <text x="72" y="174" text-anchor="end" class="axis-label">2</text>
+      <line x1="80" y1="146.7" x2="640" y2="146.7" class="grid-line"/>
+      <text x="72" y="151" text-anchor="end" class="axis-label">4</text>
+      <line x1="80" y1="123.3" x2="640" y2="123.3" class="grid-line"/>
+      <text x="72" y="127" text-anchor="end" class="axis-label">6</text>
+      <line x1="80" y1="100" x2="640" y2="100" class="grid-line"/>
+      <text x="72" y="104" text-anchor="end" class="axis-label">8</text>
+      <line x1="80" y1="76.7" x2="640" y2="76.7" class="grid-line"/>
+      <text x="72" y="81" text-anchor="end" class="axis-label">10</text>
+      <line x1="80" y1="53.3" x2="640" y2="53.3" class="grid-line"/>
+      <text x="72" y="57" text-anchor="end" class="axis-label">12</text>
 
-      <!-- Y gridlines: range 4 to 14, chart area y=30 to y=160, so per unit = 130/10 = 13 -->
-      <!-- 4 → y=160, 6 → y=134, 8 → y=108, 10 → y=82, 12 → y=56, 14 → y=30 -->
-      <line x1="80" y1="160" x2="620" y2="160" class="grid-line"/>
-      <text x="72" y="164" text-anchor="end" class="axis-label">4</text>
-      <line x1="80" y1="134" x2="620" y2="134" class="grid-line"/>
-      <text x="72" y="138" text-anchor="end" class="axis-label">6</text>
-      <line x1="80" y1="108" x2="620" y2="108" class="grid-line"/>
-      <text x="72" y="112" text-anchor="end" class="axis-label">8</text>
-      <line x1="80" y1="82" x2="620" y2="82" class="grid-line"/>
-      <text x="72" y="86" text-anchor="end" class="axis-label">10</text>
-      <line x1="80" y1="56" x2="620" y2="56" class="grid-line"/>
-      <text x="72" y="60" text-anchor="end" class="axis-label">12</text>
-
-      <!-- Normal range labels -->
-      <text x="625" y="86" class="ref-label" style="fill:#0F6E56">10.4</text>
-      <text x="625" y="152" class="ref-label" style="fill:#0F6E56">4.6</text>
-
-      <!-- Data: Feb23=10.5, Dec23=11.5, Aug24=11.0, Feb25=10.1, Apr25=8.6 -->
-      <!-- 10.5 → y=160-(10.5-4)*13 = 160-84.5=75.5 -->
-      <!-- 11.5 → y=160-(11.5-4)*13 = 160-97.5=62.5 -->
-      <!-- 11.0 → y=160-(11-4)*13 = 160-91=69 -->
-      <!-- 10.1 → y=160-(10.1-4)*13 = 160-79.3=80.7 -->
-      <!-- 8.6 → y=160-(8.6-4)*13 = 160-59.8=100.2 -->
-
-      <polyline points="140,75.5 240,62.5 340,69 440,80.7 540,100.2"
+      <!-- Data: Feb23=10.5, Dec23=11.5, Aug24=11, Feb25=10.1, Apr25=8.6, May25≈8, Jun25≈5, Nov25≈7 -->
+      <!-- 10.5→70.8, 11.5→59.1, 11→65.0, 10.1→75.5, 8.6→93.0, 8→100, 5→135, 7→111.7 -->
+      <polyline points="110,70.8 190,59.1 270,65.0 340,75.5 400,93.0 450,100 500,135 600,111.7"
         fill="none" stroke="#185FA5" stroke-width="2" stroke-linejoin="round"/>
 
-      <circle cx="140" cy="75.5" r="4" fill="#185FA5"/>
-      <circle cx="240" cy="62.5" r="4" fill="#185FA5"/>
-      <circle cx="340" cy="69" r="4" fill="#185FA5"/>
-      <circle cx="440" cy="80.7" r="4" fill="#185FA5"/>
-      <circle cx="540" cy="100.2" r="5" fill="#0F6E56" stroke="#fff" stroke-width="2"/>
+      <circle cx="110" cy="70.8" r="4" fill="#E8634F"/>
+      <circle cx="190" cy="59.1" r="4" fill="#E8634F"/>
+      <circle cx="270" cy="65.0" r="4" fill="#E8634F"/>
+      <circle cx="340" cy="75.5" r="4" fill="#E8634F"/>
+      <circle cx="400" cy="93.0" r="4" fill="#E8634F"/>
+      <circle cx="450" cy="100" r="4" fill="#185FA5"/>
+      <circle cx="500" cy="135" r="4" fill="#185FA5"/>
+      <circle cx="600" cy="111.7" r="5" fill="#0F6E56" stroke="#fff" stroke-width="2"/>
 
-      <text x="140" y="68" text-anchor="middle" class="data-label">10.5</text>
-      <text x="240" y="55" text-anchor="middle" class="data-label">11.5</text>
-      <text x="340" y="62" text-anchor="middle" class="data-label">11.0</text>
-      <text x="440" y="73" text-anchor="middle" class="data-label">10.1</text>
-      <text x="540" y="93" text-anchor="middle" class="annotation-good">8.6</text>
+      <text x="110" y="63" text-anchor="middle" class="data-label">10.5</text>
+      <text x="190" y="52" text-anchor="middle" class="data-label">11.5</text>
+      <text x="270" y="58" text-anchor="middle" class="data-label">11.0</text>
+      <text x="340" y="68" text-anchor="middle" class="data-label">10.1</text>
+      <text x="400" y="86" text-anchor="middle" class="data-label">8.6</text>
+      <text x="450" y="93" text-anchor="middle" class="data-label">8</text>
+      <text x="500" y="128" text-anchor="middle" class="data-label">5</text>
+      <text x="600" y="105" text-anchor="middle" class="annotation-good">7</text>
 
-      <text x="140" y="180" text-anchor="middle" class="axis-label">Feb 2023</text>
-      <text x="240" y="180" text-anchor="middle" class="axis-label">Dec 2023</text>
-      <text x="340" y="180" text-anchor="middle" class="axis-label">Aug 2024</text>
-      <text x="440" y="180" text-anchor="middle" class="axis-label">Feb 2025</text>
-      <text x="540" y="180" text-anchor="middle" class="axis-label-bold">Apr 2025</text>
+      <text x="110" y="186" text-anchor="middle" class="axis-label">Feb 23</text>
+      <text x="190" y="186" text-anchor="middle" class="axis-label">Dec 23</text>
+      <text x="270" y="186" text-anchor="middle" class="axis-label">Aug 24</text>
+      <text x="340" y="186" text-anchor="middle" class="axis-label">Feb 25</text>
+      <text x="400" y="186" text-anchor="middle" class="axis-label">Apr 25</text>
+      <text x="450" y="186" text-anchor="middle" class="axis-label">May 25</text>
+      <text x="500" y="186" text-anchor="middle" class="axis-label">Jun 25</text>
+      <text x="600" y="186" text-anchor="middle" class="axis-label-bold">Nov 25</text>
 
-      <text x="625" y="198" text-anchor="start" style="font-size:9px;fill:#0F6E56">Normal</text>
-      <text x="625" y="208" text-anchor="start" style="font-size:9px;fill:#0F6E56">range</text>
+      <text x="250" y="203" text-anchor="middle" style="font-size:9px;fill:#E8634F">Yale</text>
+      <text x="520" y="203" text-anchor="middle" style="font-size:9px;fill:#185FA5">Mt. Sinai</text>
     </svg>
   </div>
-  <p class="chart-note">The Marrow&rsquo;s production rate. WBC drifted above the normal ceiling through 2023&ndash;2024 &mdash; the body mobilizing more immune cells in response to sustained demand from the canyon. By April 2025, after treatment initiation, the count settled into the normal range. The Marrow is standing down.</p>
+  <p class="chart-note">Above normal for two years. Then a steady descent under treatment, with the June dip to 5 reflecting early risankizumab effect. By November, settled at 7 &mdash; solidly mid-range. The Marrow has stood down.</p>
 </div>
 
 <!-- ═══════════════════════════════════════ -->
-<!-- EOSINOPHILS -->
+<!-- 4. MONOCYTES ABSOLUTE -->
+<!-- ═══════════════════════════════════════ -->
+<div class="chart-section">
+  <div class="chart-title">Monocytes (absolute count)</div>
+  <div class="chart-subtitle">Taster and macrophage precursor production &middot; &times;1000/&mu;L &middot; Normal 0.38&ndash;0.88 (Yale) / 0.3&ndash;0.9 (Sinai)</div>
+  <p class="chart-intro">Monocytes are not conscripts. They are the raw material that becomes Tasters and macrophages &mdash; the intelligence officers and the heavy-duty cleanup crew. When the canyon demands more surveillance and more reporting, the Marrow dispatches more monocyte precursors into the blood. An elevated monocyte count doesn&rsquo;t mean more soldiers; it means more <em>officers</em>. The canyon was demanding more eyes.</p>
+  <div class="chart-wrap">
+    <svg width="100%" viewBox="0 0 660 200">
+      <!-- Normal zone: ~0.38 to 0.9 on 0-1.4 scale -->
+      <!-- chart y: 30 to 160, 130px for 1.4, per 1.0 = 92.86 -->
+      <!-- 0.38→124.7, 0.88→78.3, 0.9→76.4 -->
+      <rect x="80" y="76.4" width="540" height="48.3" class="normal-zone"/>
+      <line x1="80" y1="160" x2="620" y2="160" stroke="#ccc" stroke-width="0.8"/>
+
+      <text x="72" y="164" text-anchor="end" class="axis-label">0</text>
+      <line x1="80" y1="113.6" x2="620" y2="113.6" class="grid-line"/>
+      <text x="72" y="118" text-anchor="end" class="axis-label">0.5</text>
+      <line x1="80" y1="67.1" x2="620" y2="67.1" class="grid-line"/>
+      <text x="72" y="71" text-anchor="end" class="axis-label">1.0</text>
+      <line x1="80" y1="30" x2="620" y2="30" class="grid-line"/>
+      <text x="72" y="34" text-anchor="end" class="axis-label">1.4</text>
+
+      <!-- Normal ceiling -->
+      <line x1="80" y1="76.4" x2="620" y2="76.4" class="ref-line" style="stroke:#0F6E56"/>
+      <text x="625" y="80" style="font-size:9px;fill:#0F6E56">~0.9 (ceiling)</text>
+
+      <!-- Data: Yale: Feb23=1.26, Dec23=1.13, Aug24=1.25, Feb25=1.08, Apr25=0.88 -->
+      <!-- Sinai: May25≈0.9, Jun25≈0.5, Nov25≈0.8 -->
+      <!-- 1.26→43, 1.13→55.1, 1.25→44, 1.08→59.7, 0.88→78.3, 0.9→76.4, 0.5→113.6, 0.8→85.7 -->
+      <polyline points="110,43 200,55.1 290,44 370,59.7 430,78.3 490,76.4 540,113.6 610,85.7"
+        fill="none" stroke="#7F77DD" stroke-width="2" stroke-linejoin="round"/>
+
+      <circle cx="110" cy="43" r="4" fill="#E8634F"/>
+      <circle cx="200" cy="55.1" r="4" fill="#E8634F"/>
+      <circle cx="290" cy="44" r="4" fill="#E8634F"/>
+      <circle cx="370" cy="59.7" r="4" fill="#E8634F"/>
+      <circle cx="430" cy="78.3" r="4" fill="#E8634F"/>
+      <circle cx="490" cy="76.4" r="4" fill="#185FA5"/>
+      <circle cx="540" cy="113.6" r="4" fill="#185FA5"/>
+      <circle cx="610" cy="85.7" r="5" fill="#0F6E56" stroke="#fff" stroke-width="2"/>
+
+      <text x="110" y="36" text-anchor="middle" class="data-label">1.26</text>
+      <text x="200" y="48" text-anchor="middle" class="data-label">1.13</text>
+      <text x="290" y="37" text-anchor="middle" class="data-label">1.25</text>
+      <text x="370" y="53" text-anchor="middle" class="data-label">1.08</text>
+      <text x="430" y="71" text-anchor="middle" class="data-label">0.88</text>
+      <text x="490" y="69" text-anchor="middle" class="data-label">0.9</text>
+      <text x="540" y="107" text-anchor="middle" class="data-label">0.5</text>
+      <text x="610" y="79" text-anchor="middle" class="annotation-good">0.8</text>
+
+      <text x="110" y="178" text-anchor="middle" class="axis-label">Feb 23</text>
+      <text x="200" y="178" text-anchor="middle" class="axis-label">Dec 23</text>
+      <text x="290" y="178" text-anchor="middle" class="axis-label">Aug 24</text>
+      <text x="370" y="178" text-anchor="middle" class="axis-label">Feb 25</text>
+      <text x="430" y="178" text-anchor="middle" class="axis-label">Apr 25</text>
+      <text x="490" y="178" text-anchor="middle" class="axis-label">May 25</text>
+      <text x="540" y="178" text-anchor="middle" class="axis-label">Jun 25</text>
+      <text x="610" y="178" text-anchor="middle" class="axis-label-bold">Nov 25</text>
+
+      <text x="270" y="193" text-anchor="middle" style="font-size:9px;fill:#E8634F">Yale</text>
+      <text x="550" y="193" text-anchor="middle" style="font-size:9px;fill:#185FA5">Mt. Sinai</text>
+    </svg>
+  </div>
+  <p class="chart-note">Persistently elevated for two years &mdash; the Marrow overproducing intelligence officers because the canyon kept demanding them. By April 2025 it touched normal for the first time. By November, settled in mid-range. The canyon no longer needs extra surveillance.</p>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- 5. PLATELETS -->
+<!-- ═══════════════════════════════════════ -->
+<div class="chart-section">
+  <div class="chart-title">Platelets</div>
+  <div class="chart-subtitle">The Marrow&rsquo;s war-production gauge &middot; &times;1000/&mu;L &middot; Normal 214&ndash;375 (Yale) / 150&ndash;450 (Sinai)</div>
+  <p class="chart-intro">Platelets are not immune cells. They plug wounds and clot blood. But they are made in the same Marrow as everything else, and when the Marrow is in a war-production state &mdash; driven by inflammatory signals like IL-6 &mdash; it ramps up <em>all</em> its production lines, not just immune cells. Persistently elevated platelets in IBD are called reactive thrombocytosis: a sign that the factories have been running hot for a long time. This was the slowest marker to normalize &mdash; consistent with reactive thrombocytosis being driven by chronic IL-6, one of the last environmental signals to subside as the canyon quiets.</p>
+  <div class="chart-wrap">
+    <svg width="100%" viewBox="0 0 660 220">
+      <!-- chart y: 30 to 170, 140px for range 200-500, per unit = 0.467 -->
+      <!-- 200→170, 375→88.3, 450→53.3, 500→30 -->
+      <rect x="80" y="53.3" width="560" height="116.7" class="normal-zone"/>
+      <line x1="80" y1="170" x2="640" y2="170" stroke="#ccc" stroke-width="0.8"/>
+
+      <text x="72" y="174" text-anchor="end" class="axis-label">200</text>
+      <line x1="80" y1="123.3" x2="640" y2="123.3" class="grid-line"/>
+      <text x="72" y="127" text-anchor="end" class="axis-label">300</text>
+      <line x1="80" y1="76.7" x2="640" y2="76.7" class="grid-line"/>
+      <text x="72" y="81" text-anchor="end" class="axis-label">400</text>
+      <line x1="80" y1="30" x2="640" y2="30" class="grid-line"/>
+      <text x="72" y="34" text-anchor="end" class="axis-label">500</text>
+
+      <!-- Yale upper normal 375 -->
+      <line x1="80" y1="88.3" x2="400" y2="88.3" class="ref-line"/>
+      <text x="82" y="83" class="ref-label">375 (Yale ceiling)</text>
+
+      <!-- Data: Yale: Feb23=471, Dec23=405, Aug24=415, Feb25=406, Apr25=408 -->
+      <!-- Sinai: May25=388, Jun25=349, Jul25=337, Nov25=353 -->
+      <!-- 471→43.4, 405→74.3, 415→69.6, 406→73.8, 408→72.9 -->
+      <!-- 388→82.2, 349→100.4, 337→106.0, 353→98.6 -->
+      <polyline points="100,43.4 180,74.3 260,69.6 330,73.8 390,72.9 440,82.2 490,100.4 530,106.0 610,98.6"
+        fill="none" stroke="#BA7517" stroke-width="2" stroke-linejoin="round"/>
+
+      <circle cx="100" cy="43.4" r="4" fill="#E8634F"/>
+      <circle cx="180" cy="74.3" r="4" fill="#E8634F"/>
+      <circle cx="260" cy="69.6" r="4" fill="#E8634F"/>
+      <circle cx="330" cy="73.8" r="4" fill="#E8634F"/>
+      <circle cx="390" cy="72.9" r="4" fill="#E8634F"/>
+      <circle cx="440" cy="82.2" r="4" fill="#185FA5"/>
+      <circle cx="490" cy="100.4" r="4" fill="#185FA5"/>
+      <circle cx="530" cy="106.0" r="4" fill="#185FA5"/>
+      <circle cx="610" cy="98.6" r="5" fill="#0F6E56" stroke="#fff" stroke-width="2"/>
+
+      <text x="100" y="36" text-anchor="middle" class="annotation-bad">471</text>
+      <text x="180" y="67" text-anchor="middle" class="data-label">405</text>
+      <text x="260" y="62" text-anchor="middle" class="data-label">415</text>
+      <text x="330" y="67" text-anchor="middle" class="data-label">406</text>
+      <text x="390" y="66" text-anchor="middle" class="data-label">408</text>
+      <text x="440" y="75" text-anchor="middle" class="data-label">388</text>
+      <text x="490" y="93" text-anchor="middle" class="data-label">349</text>
+      <text x="530" y="99" text-anchor="middle" class="data-label">337</text>
+      <text x="610" y="92" text-anchor="middle" class="annotation-good">353</text>
+
+      <text x="100" y="186" text-anchor="middle" class="axis-label">Feb 23</text>
+      <text x="180" y="186" text-anchor="middle" class="axis-label">Dec 23</text>
+      <text x="260" y="186" text-anchor="middle" class="axis-label">Aug 24</text>
+      <text x="330" y="186" text-anchor="middle" class="axis-label">Feb 25</text>
+      <text x="390" y="186" text-anchor="middle" class="axis-label">Apr 25</text>
+      <text x="440" y="186" text-anchor="middle" class="axis-label">May 25</text>
+      <text x="490" y="186" text-anchor="middle" class="axis-label">Jun 25</text>
+      <text x="530" y="186" text-anchor="middle" class="axis-label">Jul 25</text>
+      <text x="610" y="186" text-anchor="middle" class="axis-label-bold">Nov 25</text>
+
+      <text x="240" y="203" text-anchor="middle" style="font-size:9px;fill:#E8634F">Yale</text>
+      <text x="530" y="203" text-anchor="middle" style="font-size:9px;fill:#185FA5">Mt. Sinai</text>
+    </svg>
+  </div>
+  <p class="chart-note">Every Yale measurement was above the normal ceiling &mdash; two years of the Marrow running its factories hot. Under risankizumab, platelets dropped into the normal range: 388 &rarr; 349 &rarr; 337 &rarr; 353. The factories have finally cooled.</p>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- 6. EOSINOPHILS -->
 <!-- ═══════════════════════════════════════ -->
 <div class="chart-section">
   <div class="chart-title">Eosinophils</div>
   <div class="chart-subtitle">Ruling out what this isn&rsquo;t &middot; % of WBC &middot; Normal 0.9&ndash;6.8%</div>
+  <p class="chart-intro">If the canyon&rsquo;s war were driven by type 2 inflammation &mdash; the allergic, eosinophilic kind seen in atopic dermatitis or parasitic infections &mdash; eosinophils would be elevated. They are the specialist corps of the T2 immune response. Their absence tells you what <em>kind</em> of war this is.</p>
   <div class="chart-wrap">
     <svg width="100%" viewBox="0 0 660 180">
-      <!-- Normal zone: 0.9 to 6.8 on a 0-8 scale -->
-      <!-- chart y: 30 to 140, 110px for 0-8 range, per unit = 13.75 -->
-      <!-- 0 → y=140, 0.9 → 127.6, 6.8 → 46.5, 8 → 30 -->
       <rect x="80" y="46.5" width="540" height="81" class="normal-zone"/>
-
       <line x1="80" y1="140" x2="620" y2="140" stroke="#ccc" stroke-width="0.8"/>
-
-      <line x1="80" y1="140" x2="620" y2="140" class="grid-line"/>
       <text x="72" y="144" text-anchor="end" class="axis-label">0</text>
       <line x1="80" y1="112.5" x2="620" y2="112.5" class="grid-line"/>
       <text x="72" y="116" text-anchor="end" class="axis-label">2</text>
@@ -234,16 +411,8 @@
       <line x1="80" y1="57.5" x2="620" y2="57.5" class="grid-line"/>
       <text x="72" y="61" text-anchor="end" class="axis-label">6</text>
 
-      <!-- Data: Feb23=1.1, Dec23=0.7, Aug24=0.9, Feb25=1.0, Apr25=1.3 -->
-      <!-- 1.1 → y=140-1.1*13.75=140-15.1=124.9 -->
-      <!-- 0.7 → y=140-0.7*13.75=140-9.6=130.4 -->
-      <!-- 0.9 → y=140-0.9*13.75=140-12.4=127.6 -->
-      <!-- 1.0 → y=140-1.0*13.75=140-13.75=126.25 -->
-      <!-- 1.3 → y=140-1.3*13.75=140-17.9=122.1 -->
-
       <polyline points="140,124.9 240,130.4 340,127.6 440,126.25 540,122.1"
         fill="none" stroke="#BA7517" stroke-width="2" stroke-linejoin="round"/>
-
       <circle cx="140" cy="124.9" r="4" fill="#BA7517"/>
       <circle cx="240" cy="130.4" r="4" fill="#BA7517"/>
       <circle cx="340" cy="127.6" r="4" fill="#BA7517"/>
@@ -263,22 +432,19 @@
       <text x="540" y="158" text-anchor="middle" class="axis-label">Apr 2025</text>
     </svg>
   </div>
-  <p class="chart-note">The line that didn&rsquo;t move. Eosinophils stayed at the bottom of the normal range throughout &mdash; confirming this was never a type 2 (allergic) war. No eosinophilic infiltration, no parasitic component. This is Th1/Th17 inflammation: soldiers and conscripts, not the eosinophil corps. Consistent with Crohn&rsquo;s.</p>
+  <p class="chart-note">The line that didn&rsquo;t move. Low-normal throughout. This was never a T2 war. Th1/Th17: soldiers and conscripts, not the eosinophil corps. Consistent with Crohn&rsquo;s.</p>
 </div>
 
 <!-- ═══════════════════════════════════════ -->
-<!-- WALL THICKNESS -->
+<!-- 7. WALL THICKNESS -->
 <!-- ═══════════════════════════════════════ -->
 <div class="chart-section">
   <div class="chart-title">Bowel wall thickness by segment</div>
   <div class="chart-subtitle">Watching the Builders &middot; cm &middot; June 2, 2025 ultrasound at Mt. Sinai &middot; Abnormal &ge; 0.30 cm</div>
+  <p class="chart-intro">The scope sees the surface of the Wall &mdash; granularity, ulcers, inflammation. The ultrasound sees the Wall itself: its thickness, its layers, the blood flow within it. Wall thickening is the signature of the Builders waking up &mdash; fibroblasts depositing collagen, the tissue remodeling that, once established, cannot be reversed. This is the surveillance of Agreement 3.</p>
   <div class="chart-wrap">
     <svg width="100%" viewBox="0 0 660 240">
-      <!-- Grid -->
       <line x1="100" y1="180" x2="580" y2="180" stroke="#ccc" stroke-width="0.8"/>
-
-      <!-- Y gridlines: 0 to 0.35, chart y: 30 to 180, 150px range, per 0.01cm = 150/35 = 4.29 -->
-      <line x1="100" y1="180" x2="580" y2="180" class="grid-line"/>
       <text x="92" y="184" text-anchor="end" class="axis-label">0</text>
       <line x1="100" y1="137.1" x2="580" y2="137.1" class="grid-line"/>
       <text x="92" y="141" text-anchor="end" class="axis-label">0.10</text>
@@ -286,29 +452,19 @@
       <text x="92" y="98" text-anchor="end" class="axis-label">0.20</text>
       <line x1="100" y1="51.4" x2="580" y2="51.4" class="grid-line"/>
       <text x="92" y="55" text-anchor="end" class="axis-label">0.30</text>
-
-      <!-- Abnormal threshold -->
       <line x1="100" y1="51.4" x2="580" y2="51.4" class="ref-line"/>
       <text x="585" y="55" class="ref-label">Abnormal</text>
-
-      <!-- Bars: 4 segments -->
-      <!-- Descending: 0.08 → h=0.08*428.6=34.3, y=180-34.3=145.7 -->
-      <!-- Sigmoid: 0.10 (avg) → h=42.9, y=137.1 -->
-      <!-- Ascending: 0.26 → h=111.4, y=68.6 -->
-      <!-- Terminal ileum: 0.29 → h=124.3, y=55.7 -->
 
       <rect x="130" y="145.7" width="70" height="34.3" rx="4" fill="#0D7377" opacity="0.3"/>
       <rect x="250" y="137.1" width="70" height="42.9" rx="4" fill="#0D7377" opacity="0.3"/>
       <rect x="370" y="68.6" width="70" height="111.4" rx="4" fill="#E8634F" opacity="0.5"/>
       <rect x="490" y="55.7" width="70" height="124.3" rx="4" fill="#A32D2D" opacity="0.5"/>
 
-      <!-- Data labels -->
       <text x="165" y="140" text-anchor="middle" class="data-label" style="fill:#0D7377">0.08</text>
       <text x="285" y="131" text-anchor="middle" class="data-label" style="fill:#0D7377">0.10</text>
       <text x="405" y="62" text-anchor="middle" class="data-label" style="fill:#A32D2D">0.26</text>
       <text x="525" y="49" text-anchor="middle" class="annotation-bad">0.29</text>
 
-      <!-- X labels -->
       <text x="165" y="198" text-anchor="middle" class="axis-label">Descending</text>
       <text x="165" y="210" text-anchor="middle" class="axis-label">colon</text>
       <text x="285" y="198" text-anchor="middle" class="axis-label">Sigmoid</text>
@@ -317,27 +473,23 @@
       <text x="405" y="210" text-anchor="middle" class="axis-label-bold">colon</text>
       <text x="525" y="198" text-anchor="middle" class="axis-label-bold">Terminal</text>
       <text x="525" y="210" text-anchor="middle" class="axis-label-bold">ileum</text>
-
-      <!-- Arrows showing direction -->
       <text x="165" y="228" text-anchor="middle" style="font-size:10px;fill:#0D7377">&larr; left side</text>
       <text x="465" y="228" text-anchor="middle" style="font-size:10px;fill:#A32D2D">right side &rarr;</text>
     </svg>
   </div>
-  <p class="chart-note">The scope saw UC-like surface inflammation across the entire colon. The ultrasound saw the walls &mdash; and found a right-sided gradient. The left colon (descending, sigmoid) has paper-thin walls. The right colon and terminal ileum are two to three times thicker. This is a Crohn&rsquo;s pattern: right-sided predominance with ileal involvement. The terminal ileum &mdash; the segment the scope called &ldquo;normal&rdquo; &mdash; has the thickest wall of any segment measured. The scope sees the paint. The ultrasound sees the wall.</p>
+  <p class="chart-note">The scope saw UC-like surface inflammation everywhere. The ultrasound saw Crohn&rsquo;s-like walls: right-sided predominance, the terminal ileum thickest of all. Critically: no segment crosses the 3mm abnormal threshold. The Builders are not yet awake. The scope sees the paint. The ultrasound sees the wall.</p>
 </div>
 
 <!-- ═══════════════════════════════════════ -->
-<!-- TIMELINE SUMMARY -->
+<!-- 8. TIMELINE -->
 <!-- ═══════════════════════════════════════ -->
 <div class="chart-section">
   <div class="chart-title">Timeline</div>
   <div class="chart-subtitle">Key events in Harrison&rsquo;s clinical course</div>
   <div class="chart-wrap">
     <svg width="100%" viewBox="0 0 660 310">
-      <!-- Central line -->
       <line x1="90" y1="30" x2="90" y2="290" stroke="#EDEBE6" stroke-width="2"/>
 
-      <!-- Events -->
       <circle cx="90" cy="30" r="5" fill="#888"/>
       <text x="110" y="28" class="axis-label-bold" style="font-size:11px">Mar 2022</text>
       <text x="110" y="42" class="axis-label" style="font-size:11px">First colonoscopy at age 4. Watching begins.</text>
