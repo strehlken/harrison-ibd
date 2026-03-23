@@ -36,7 +36,7 @@
   .callout-text { font-family: 'Source Serif 4', Georgia, serif; font-size: 15px; line-height: 1.7; color: #444; }
   .tab-nav { background: #fff; border-bottom: 1px solid #e0ded8; position: sticky; top: 0; z-index: 100; }
   .tab-nav-inner { max-width: 960px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .tab-nav a { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.5px; color: #777; text-decoration: none; padding: 14px 14px 12px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .tab-nav a { font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; letter-spacing: 0.5px; color: #777; text-decoration: none; padding: 14px 14px 12px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
   .tab-nav a:hover { color: #111; border-bottom-color: #ccc; }
   .tab-nav a.active { color: #111; border-bottom-color: #185FA5; }
 </style>
@@ -70,7 +70,7 @@
 <!-- ═══════════════════════════════════════ -->
 <div class="chart-section">
   <div class="chart-title">Fecal calprotectin</div>
-  <div class="chart-subtitle">The dead-conscript count &middot; &mu;g/g stool &middot; Normal &lt; 50</div>
+  <div class="chart-subtitle">The dead-conscript count &middot; &mu;g/g stool &middot; Normal &lt; 50 &middot; Full history since diagnosis</div>
   <p class="chart-intro">When the Wall-Folk are in distress, they scream &mdash; a chemical called IL-8 that summons neutrophils from the bloodstream. These conscripts live for hours. They arrive, dump their calprotectin cargo into the tissue, and die. The calprotectin washes downstream and out of the body. Measuring it in stool is like counting spent shell casings washed out of the canyon. It is the smoke above the city.</p>
   <div class="chart-wrap">
     <svg width="100%" viewBox="0 0 700 310">
@@ -79,54 +79,100 @@
           <path d="M2 2L8 5L2 8" fill="none" stroke="#185FA5" stroke-width="1.5" stroke-linecap="round"/>
         </marker>
       </defs>
+      <!-- Grid: y 30-220 = 190px for 0-4500, per unit = 0.04222 -->
       <line x1="80" y1="30" x2="80" y2="220" stroke="#EDEBE6" stroke-width="0.5"/>
-      <line x1="80" y1="220" x2="620" y2="220" stroke="#ccc" stroke-width="0.8"/>
-      <line x1="80" y1="220" x2="620" y2="220" class="grid-line"/>
+      <line x1="80" y1="220" x2="660" y2="220" stroke="#ccc" stroke-width="0.8"/>
+      <line x1="80" y1="220" x2="660" y2="220" class="grid-line"/>
       <text x="72" y="226" text-anchor="end" class="axis-label">0</text>
-      <line x1="80" y1="176" x2="620" y2="176" class="grid-line"/>
+      <line x1="80" y1="176" x2="660" y2="176" class="grid-line"/>
       <text x="72" y="182" text-anchor="end" class="axis-label">1,000</text>
-      <line x1="80" y1="132" x2="620" y2="132" class="grid-line"/>
+      <line x1="80" y1="132" x2="660" y2="132" class="grid-line"/>
       <text x="72" y="138" text-anchor="end" class="axis-label">2,000</text>
-      <line x1="80" y1="88" x2="620" y2="88" class="grid-line"/>
+      <line x1="80" y1="88" x2="660" y2="88" class="grid-line"/>
       <text x="72" y="94" text-anchor="end" class="axis-label">3,000</text>
-      <line x1="80" y1="44" x2="620" y2="44" class="grid-line"/>
+      <line x1="80" y1="44" x2="660" y2="44" class="grid-line"/>
       <text x="72" y="50" text-anchor="end" class="axis-label">4,000</text>
-      <line x1="80" y1="217.8" x2="620" y2="217.8" class="ref-line"/>
-      <text x="590" y="212" class="ref-label">50 (normal)</text>
-      <polyline points="140,170.7 240,177.0 340,189.1 440,51.8 560,219.0"
+      <!-- Normal threshold -->
+      <line x1="80" y1="217.8" x2="660" y2="217.8" class="ref-line"/>
+      <text x="90" y="210" class="ref-label">Normal: 50</text>
+
+      <!-- Data: Mar21=1510, Feb22=2500, May22=4080, Nov22=666, Jun23=1260, Dec23=1100, Aug24=789, Mar25=4300, Jul25=102, Nov25=25 -->
+      <!-- Y: 1510→156.2, 2500→114.4, 4080→47.7, 666→191.9, 1260→166.8, 1100→173.6, 789→186.7, 4300→38.5, 102→215.7, 25→218.9 -->
+      <!-- X: 10 points from 100 to 645 -->
+      <polyline points="100,156.2 155,114.4 205,47.7 265,191.9 325,166.8 380,173.6 435,186.7 495,38.5 565,215.7 640,218.9"
         fill="none" stroke="#E24B4A" stroke-width="2" stroke-linejoin="round"/>
-      <circle cx="140" cy="170.7" r="5" fill="#E24B4A"/>
-      <circle cx="240" cy="177.0" r="5" fill="#E24B4A"/>
-      <circle cx="340" cy="189.1" r="5" fill="#E24B4A"/>
-      <circle cx="440" cy="51.8" r="6" fill="#A32D2D" stroke="#fff" stroke-width="2"/>
-      <circle cx="560" cy="219.0" r="6" fill="#0F6E56" stroke="#fff" stroke-width="2"/>
-      <text x="140" y="160" text-anchor="middle" class="data-label">1,260</text>
-      <text x="240" y="167" text-anchor="middle" class="data-label">1,100</text>
-      <text x="340" y="179" text-anchor="middle" class="data-label">789</text>
-      <text x="440" y="42" text-anchor="middle" class="annotation-bad">4,300</text>
-      <text x="560" y="209" text-anchor="middle" class="annotation-good">25</text>
-      <text x="140" y="245" text-anchor="middle" class="axis-label">Jun 2023</text>
-      <text x="240" y="245" text-anchor="middle" class="axis-label">Dec 2023</text>
-      <text x="340" y="245" text-anchor="middle" class="axis-label">Aug 2024</text>
-      <text x="440" y="245" text-anchor="middle" class="axis-label-bold">Mar 2025</text>
-      <text x="560" y="245" text-anchor="middle" class="axis-label-bold">Nov 2025</text>
-      <text x="440" y="272" text-anchor="middle" class="annotation-bad">Siege</text>
-      <text x="560" y="272" text-anchor="middle" class="annotation-good">Ceasefire</text>
-      <line x1="475" y1="140" x2="525" y2="140" stroke="#185FA5" stroke-width="1.2" marker-end="url(#blue-arrow)"/>
-      <text x="575" y="145" text-anchor="middle" class="annotation">Risankizumab</text>
+
+      <!-- Data dots -->
+      <circle cx="100" cy="156.2" r="4" fill="#E24B4A"/>
+      <circle cx="155" cy="114.4" r="4" fill="#E24B4A"/>
+      <circle cx="205" cy="47.7" r="6" fill="#A32D2D" stroke="#fff" stroke-width="2"/>
+      <circle cx="265" cy="191.9" r="4" fill="#E24B4A"/>
+      <circle cx="325" cy="166.8" r="4" fill="#E24B4A"/>
+      <circle cx="380" cy="173.6" r="4" fill="#E24B4A"/>
+      <circle cx="435" cy="186.7" r="4" fill="#E24B4A"/>
+      <circle cx="495" cy="38.5" r="6" fill="#A32D2D" stroke="#fff" stroke-width="2"/>
+      <circle cx="565" cy="215.7" r="4" fill="#185FA5"/>
+      <circle cx="640" cy="218.9" r="6" fill="#0F6E56" stroke="#fff" stroke-width="2"/>
+
+      <!-- Data labels -->
+      <text x="100" y="148" text-anchor="middle" class="data-label">1,510</text>
+      <text x="155" y="107" text-anchor="middle" class="data-label">2,500</text>
+      <text x="205" y="40" text-anchor="middle" class="annotation-bad">4,080</text>
+      <text x="265" y="184" text-anchor="middle" class="data-label">666</text>
+      <text x="325" y="159" text-anchor="middle" class="data-label">1,260</text>
+      <text x="380" y="166" text-anchor="middle" class="data-label">1,100</text>
+      <text x="435" y="179" text-anchor="middle" class="data-label">789</text>
+      <text x="495" y="31" text-anchor="middle" class="annotation-bad">4,300</text>
+      <text x="565" y="209" text-anchor="middle" class="annotation">102</text>
+      <text x="640" y="211" text-anchor="middle" class="annotation-good">25</text>
+
+      <!-- X axis labels -->
+      <text x="100" y="242" text-anchor="middle" class="axis-label">Mar</text>
+      <text x="100" y="258" text-anchor="middle" class="axis-label">2021</text>
+      <text x="155" y="242" text-anchor="middle" class="axis-label">Feb</text>
+      <text x="155" y="258" text-anchor="middle" class="axis-label">2022</text>
+      <text x="205" y="242" text-anchor="middle" class="axis-label-bold">May</text>
+      <text x="205" y="258" text-anchor="middle" class="axis-label-bold">2022</text>
+      <text x="265" y="242" text-anchor="middle" class="axis-label">Nov</text>
+      <text x="265" y="258" text-anchor="middle" class="axis-label">2022</text>
+      <text x="325" y="242" text-anchor="middle" class="axis-label">Jun</text>
+      <text x="325" y="258" text-anchor="middle" class="axis-label">2023</text>
+      <text x="380" y="242" text-anchor="middle" class="axis-label">Dec</text>
+      <text x="380" y="258" text-anchor="middle" class="axis-label">2023</text>
+      <text x="435" y="242" text-anchor="middle" class="axis-label">Aug</text>
+      <text x="435" y="258" text-anchor="middle" class="axis-label">2024</text>
+      <text x="495" y="242" text-anchor="middle" class="axis-label-bold">Mar</text>
+      <text x="495" y="258" text-anchor="middle" class="axis-label-bold">2025</text>
+      <text x="565" y="242" text-anchor="middle" class="axis-label">Jul</text>
+      <text x="565" y="258" text-anchor="middle" class="axis-label">2025</text>
+      <text x="640" y="242" text-anchor="middle" class="axis-label-bold">Nov</text>
+      <text x="640" y="258" text-anchor="middle" class="axis-label-bold">2025</text>
+
+      <!-- Siege annotations -->
+      <text x="205" y="280" text-anchor="middle" class="annotation-bad">1st siege</text>
+      <text x="495" y="280" text-anchor="middle" class="annotation-bad">2nd siege</text>
+      <text x="640" y="280" text-anchor="middle" class="annotation-good">Ceasefire</text>
+
+      <!-- Treatment arrow -->
+      <line x1="520" y1="130" x2="555" y2="130" stroke="#185FA5" stroke-width="1.2" marker-end="url(#blue-arrow)"/>
+      <text x="610" y="135" text-anchor="middle" class="annotation">Risankizumab</text>
+
+      <!-- Pentasa range bracket -->
+      <line x1="100" y1="290" x2="495" y2="290" stroke="#999" stroke-width="0.8"/>
+      <text x="298" y="304" text-anchor="middle" style="font-size:14px;fill:#999">Pentasa (2&rarr;3&rarr;4 capsules/day)</text>
     </svg>
   </div>
-  <p class="chart-note">Eight months after starting risankizumab: 25. The conscripts have stopped coming.</p>
+  <p class="chart-note">The full arc. Two sieges: May 2022 (4,080) and March 2025 (4,300). Between them, a long smolder on Pentasa that never fully quieted &mdash; the canyon never went below 666. After risankizumab: 102 at three months (borderline &mdash; the fighting is subsiding), then 25 at eight months (normal &mdash; the conscripts have stopped coming). The pattern reveals that the March 2025 spike was not a sudden event. It was a recurrence. The canyon had been here before.</p>
 </div>
 
 <!-- ═══════════════════════════════════════ -->
 <!-- CALPROTECTIN SPIKE CALLOUT -->
 <!-- ═══════════════════════════════════════ -->
 <div class="callout-box">
-  <div class="callout-title">What caused the spike from 789 to 4,300?</div>
-  <p class="callout-text">The calprotectin had been running between 789 and 1,260 for nearly two years on Pentasa &mdash; a chronic smolder, the canyon at war but not in crisis. Then in March 2025, it jumped fivefold. What happened?</p>
-  <p class="callout-text" style="margin-top:10px">The honest answer: usually, we don&rsquo;t know. An intercurrent infection &mdash; a stomach bug, a norovirus &mdash; can act like a match thrown on dry kindling, temporarily overwhelming an already-strained barrier. Antibiotics for an unrelated illness can devastate the Commensal population, starving the Peacekeepers of their butyrate supply. Even ibuprofen for a fever can directly damage the intestinal wall in ways that are trivial in a healthy gut but destabilizing in an inflamed one.</p>
-  <p class="callout-text" style="margin-top:10px">It is also possible that no external trigger was needed at all. Crohn&rsquo;s can smolder at one level and then step-change as the disease outgrows a therapy that was barely holding. The system was unstable. Unstable systems don&rsquo;t always need a push to fall; sometimes they simply run out of counterbalance. This is one of the most anxiety-producing aspects of IBD for families &mdash; &ldquo;what did we do wrong?&rdquo; &mdash; and the honest answer is usually: nothing.</p>
+  <div class="callout-title">The second siege: what the full history reveals</div>
+  <p class="callout-text">With the complete calprotectin record, the March 2025 spike looks different than it did when we could only see two years of data. It was not a sudden escalation from a smolder. It was a <em>recurrence</em>. May 2022 had hit 4,080 &mdash; nearly identical. That first siege was followed by a colonoscopy that found no ulcers, and Pentasa was increased from two to three capsules per day. The calprotectin dropped to 666 by November, then drifted upward through 2023 (1,260 &rarr; 1,100) and gradually down to 789 by August 2024 &mdash; a long smolder, never quiet, never in crisis. Then the second spike.</p>
+  <p class="callout-text" style="margin-top:10px">The pattern tells you something the individual numbers don&rsquo;t: this canyon&rsquo;s floor is not zero. It is not 50. The lowest calprotectin ever recorded on Pentasa was 666 &mdash; still thirteen times the normal threshold. The treatment was dampening the fire, not extinguishing it. The system was always capable of re-igniting because the underlying inflammatory drive was never fully controlled. The second siege was not a surprise. It was the inevitable consequence of a smoldering war managed with a therapy that could not achieve deep suppression.</p>
+  <p class="callout-text" style="margin-top:10px">As for external triggers &mdash; an intercurrent infection, antibiotics, NSAIDs, or simply disease progression outpacing the drug &mdash; any of these could have tipped the balance. But the deeper answer is structural: Pentasa was never the right tool for this canyon. Risankizumab achieved what Pentasa could not: a calprotectin of 25. Below normal. For the first time in Harrison&rsquo;s recorded history.</p>
 </div>
 
 <!-- ═══════════════════════════════════════ -->
@@ -333,7 +379,7 @@
 
       <!-- Yale upper normal 375 -->
       <line x1="80" y1="88.3" x2="420" y2="88.3" class="ref-line"/>
-      <text x="82" y="82" class="ref-label">375 (Yale ceiling)</text>
+      <text x="82" y="105" class="ref-label">375 (Yale ceiling)</text>
 
       <!-- 9 data points spread across 100-670 (~71px spacing) -->
       <polyline points="100,43.4 170,74.3 250,69.6 330,73.8 400,72.9 470,82.2 540,100.4 600,106.0 670,98.6"
@@ -471,34 +517,57 @@
   <div class="chart-title">Timeline</div>
   <div class="chart-subtitle">Key events in Harrison&rsquo;s clinical course</div>
   <div class="chart-wrap">
-    <svg width="100%" viewBox="0 0 660 440">
-      <line x1="90" y1="30" x2="90" y2="410" stroke="#EDEBE6" stroke-width="2"/>
+    <svg width="100%" viewBox="0 0 660 850">
+      <line x1="90" y1="35" x2="90" y2="830" stroke="#EDEBE6" stroke-width="2"/>
 
-      <circle cx="90" cy="30" r="5" fill="#888"/>
-      <text x="110" y="28" class="axis-label-bold" style="font-size:15px">Mar 2022</text>
-      <text x="110" y="48" class="axis-label" style="font-size:15px">First colonoscopy at age 4. Watching begins.</text>
+      <circle cx="90" cy="35" r="5" fill="#888"/>
+      <text x="110" y="33" class="axis-label-bold">Fall 2020</text>
+      <text x="110" y="53" class="axis-label">Bloody stools at age 3. Testing begins.</text>
 
-      <circle cx="90" cy="95" r="5" fill="#E8634F"/>
-      <text x="110" y="93" class="axis-label-bold" style="font-size:15px">Jun 2023</text>
-      <text x="110" y="113" class="axis-label" style="font-size:15px">Calprotectin 1,260. The smoke is visible. Started on Pentasa.</text>
+      <circle cx="90" cy="100" r="5" fill="#A32D2D"/>
+      <text x="110" y="98" class="axis-label-bold">Dec 2020</text>
+      <text x="110" y="118" class="axis-label">Colonoscopy. Diagnosed with Crohn&rsquo;s disease at age 3&frac12;.</text>
+      <text x="110" y="138" class="axis-label">Started on Pentasa (2 capsules/day).</text>
 
-      <circle cx="90" cy="160" r="5" fill="#E8634F"/>
-      <text x="110" y="158" class="axis-label-bold" style="font-size:15px">Mar 2025</text>
-      <text x="110" y="178" class="axis-label" style="font-size:15px;fill:#A32D2D">Calprotectin 4,300. Full siege. Scope and EGD performed.</text>
+      <circle cx="90" cy="188" r="4" fill="#E8634F"/>
+      <text x="110" y="186" class="axis-label-bold">Mar 2021</text>
+      <text x="110" y="206" class="axis-label">Calprotectin 1,510. First measurement. The smoke is already visible.</text>
 
-      <circle cx="90" cy="225" r="5" fill="#185FA5"/>
-      <text x="110" y="223" class="axis-label-bold" style="font-size:15px">Mar 26, 2025</text>
-      <text x="110" y="243" class="axis-label" style="font-size:15px">Colonoscopy + EGD. Duodenal ulcers + ileitis. Dx: Crohn&rsquo;s.</text>
+      <circle cx="90" cy="256" r="5" fill="#E8634F"/>
+      <text x="110" y="254" class="axis-label-bold" style="fill:#A32D2D">May 2022</text>
+      <text x="110" y="274" class="axis-label" style="fill:#A32D2D">Calprotectin 4,080. First siege. Colonoscopy: no ulcers found.</text>
+      <text x="110" y="294" class="axis-label">Pentasa increased from 2 to 3 capsules/day.</text>
 
-      <circle cx="90" cy="290" r="5" fill="#185FA5"/>
-      <text x="110" y="288" class="axis-label-bold" style="font-size:15px">Apr&ndash;Jun 2025</text>
-      <text x="110" y="308" class="axis-label" style="font-size:15px">Ultrasound baseline. Transfer to Mt. Sinai (Dubinsky/Spencer).</text>
-      <text x="110" y="328" class="axis-label" style="font-size:15px">Risankizumab induction begun.</text>
+      <circle cx="90" cy="344" r="4" fill="#E8634F"/>
+      <text x="110" y="342" class="axis-label-bold">Nov 2022</text>
+      <text x="110" y="362" class="axis-label">Calprotectin 666. Lowest on Pentasa. Still 13&times; normal.</text>
 
-      <circle cx="90" cy="375" r="6" fill="#0F6E56" stroke="#fff" stroke-width="2"/>
-      <text x="110" y="373" class="axis-label-bold" style="font-size:15px;fill:#0F6E56">Nov 2025</text>
-      <text x="110" y="393" class="axis-label" style="font-size:15px;fill:#0F6E56">Calprotectin 25. Normal. The canyon is quiet.</text>
-      <text x="110" y="413" class="axis-label" style="font-size:15px;fill:#0F6E56">Walls thin. Builders asleep. Window open.</text>
+      <circle cx="90" cy="412" r="4" fill="#E8634F"/>
+      <text x="110" y="410" class="axis-label-bold">Jun 2023 &ndash; Aug 2024</text>
+      <text x="110" y="430" class="axis-label">Smolder. Calprotectin: 1,260 &rarr; 1,100 &rarr; 789. Never quiet.</text>
+
+      <circle cx="90" cy="480" r="5" fill="#E8634F"/>
+      <text x="110" y="478" class="axis-label-bold" style="fill:#A32D2D">Mar 2025</text>
+      <text x="110" y="498" class="axis-label" style="fill:#A32D2D">Calprotectin 4,300. Second siege. Scope and EGD ordered.</text>
+
+      <circle cx="90" cy="548" r="5" fill="#185FA5"/>
+      <text x="110" y="546" class="axis-label-bold">Mar 26, 2025</text>
+      <text x="110" y="566" class="axis-label">Colonoscopy + EGD. Duodenal ulcers + chronic ileitis on biopsy.</text>
+      <text x="110" y="586" class="axis-label">Reclassified: Crohn&rsquo;s colitis with upper GI involvement.</text>
+
+      <circle cx="90" cy="636" r="5" fill="#185FA5"/>
+      <text x="110" y="634" class="axis-label-bold">Apr&ndash;Jun 2025</text>
+      <text x="110" y="654" class="axis-label">Ultrasound baseline. Transfer to Mt. Sinai (Dubinsky/Spencer).</text>
+      <text x="110" y="674" class="axis-label">Risankizumab induction begun (off-label, insurance approved).</text>
+
+      <circle cx="90" cy="724" r="4" fill="#185FA5"/>
+      <text x="110" y="722" class="axis-label-bold">Jul 2025</text>
+      <text x="110" y="742" class="axis-label">Calprotectin 102. Borderline. Treatment is responding.</text>
+
+      <circle cx="90" cy="792" r="6" fill="#0F6E56" stroke="#fff" stroke-width="2"/>
+      <text x="110" y="790" class="axis-label-bold" style="fill:#0F6E56">Nov 2025</text>
+      <text x="110" y="810" class="axis-label" style="fill:#0F6E56">Calprotectin 25. Normal. First time below 50 in recorded history.</text>
+      <text x="110" y="830" class="axis-label" style="fill:#0F6E56">Walls thin. Builders asleep. Window open.</text>
     </svg>
   </div>
 </div>
