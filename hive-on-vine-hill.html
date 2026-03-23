@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M4 6L10 14L14 8L16 28L18 8L22 14L28 6L28 28L4 28Z' fill='%23B4886B'/%3E%3Cpath d='M14 8L16 28L18 8' fill='%23FAFAF7'/%3E%3C/svg%3E">
+<title>The Hive on Vine Hill — An adventure that puts the bee in IBD</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Source Serif 4', Georgia, serif; background: #FAFAF7; color: #1a1a1a; }
+
+  /* Tab navigation */
+  .tab-nav { background: #fff; border-bottom: 1px solid #e0ded8; position: sticky; top: 0; z-index: 100; }
+  .tab-nav-inner { max-width: 960px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .tab-nav a { font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; letter-spacing: 0.5px; color: #777; text-decoration: none; padding: 14px 14px 12px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .tab-nav a:hover { color: #111; border-bottom-color: #ccc; }
+  .tab-nav a.active { color: #111; border-bottom-color: #185FA5; }
+  .tab-nav-sub { max-width: 960px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; border-top: 1px solid #f0ede8; }
+  .tab-nav-sub a { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 400; color: #999; text-decoration: none; padding: 10px 14px 8px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .tab-nav-sub a:hover { color: #111; border-bottom-color: #ccc; }
+  .tab-nav-sub a.active { color: #111; font-weight: 500; border-bottom-color: #185FA5; }
+
+  .header { max-width: 680px; margin: 0 auto; padding: 60px 24px 0; }
+  .publication { font-family: 'DM Sans', sans-serif; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: #999; margin-bottom: 24px; }
+  h1 { font-size: 38px; font-weight: 600; line-height: 1.2; margin-bottom: 10px; color: #111; }
+  .dek { font-size: 19px; font-weight: 400; color: #555; line-height: 1.5; margin-bottom: 20px; font-style: italic; }
+  .byline { font-family: 'DM Sans', sans-serif; font-size: 13px; color: #888; margin-bottom: 8px; }
+  .rule { border: none; border-top: 1px solid #ddd; margin: 28px 0 32px; }
+  .body { max-width: 680px; margin: 0 auto; padding: 0 24px 80px; }
+  .body p { font-size: 18px; line-height: 1.75; margin-bottom: 22px; color: #222; }
+  .body p.dropcap::first-letter { float: left; font-size: 62px; line-height: 0.8; padding: 4px 8px 0 0; font-weight: 600; color: #111; }
+  .section-break { text-align: center; margin: 36px 0; font-size: 18px; color: #bbb; letter-spacing: 8px; }
+  .chapter { font-family: 'DM Sans', sans-serif; font-size: 13px; letter-spacing: 2.5px; text-transform: uppercase; color: #999; margin-bottom: 10px; }
+  .pullquote { margin: 36px 0; padding: 20px 28px; border-left: 3px solid #D4A020; background: #FFFBF0; }
+  .pullquote p { font-size: 17px; font-style: italic; color: #6B5210; line-height: 1.6; margin-bottom: 0; }
+  .footnote { font-family: 'DM Sans', sans-serif; font-size: 12px; color: #999; line-height: 1.6; border-top: 1px solid #eee; padding-top: 16px; margin-top: 40px; }
+
+  /* Part Two: mapping and clinical */
+  .reveal-header { max-width: 680px; margin: 0 auto; padding: 60px 24px 0; border-top: 3px solid #D4A020; }
+  .reveal-label { font-family: 'DM Sans', sans-serif; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: #D4A020; margin-bottom: 24px; }
+  h2 { font-size: 30px; font-weight: 600; line-height: 1.2; margin-bottom: 10px; color: #111; }
+  .reveal-dek { font-size: 17px; font-weight: 400; color: #555; line-height: 1.5; margin-bottom: 20px; font-style: italic; }
+
+  /* Mapping table */
+  .map-table { width: 100%; border-collapse: collapse; margin: 28px 0; font-family: 'DM Sans', sans-serif; font-size: 14px; }
+  .map-table th { text-align: left; padding: 10px 14px; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #999; border-bottom: 2px solid #ddd; }
+  .map-table th:first-child { color: #D4A020; }
+  .map-table th:last-child { color: #185FA5; }
+  .map-table td { padding: 10px 14px; border-bottom: 1px solid #eee; vertical-align: top; line-height: 1.5; color: #333; }
+  .map-table tr:last-child td { border-bottom: none; }
+  .map-table td:first-child { color: #6B5210; font-weight: 500; }
+  .map-table td:last-child { color: #185FA5; }
+
+  /* Clinical note boxes */
+  .clinical-note { background: #F3F1EC; border-left: 3px solid #B4B2A9; padding: 14px 18px; margin: 24px 0; border-radius: 0 8px 8px 0; }
+  .clinical-note p { font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.6; color: #555; margin-bottom: 6px; }
+  .clinical-note p:last-child { margin-bottom: 0; }
+  .clinical-label { font-weight: 600; color: #444; }
+
+  .timeline-marker { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; color: #185FA5; background: #E6F1FB; display: inline-block; padding: 3px 10px; border-radius: 6px; margin-bottom: 10px; }
+  .bee-callback { font-family: 'DM Sans', sans-serif; font-size: 13px; color: #9B7D20; background: #FFFBF0; display: inline-block; padding: 3px 10px; border-radius: 6px; margin-bottom: 10px; }
+
+  /* Part Three */
+  .break-header { max-width: 680px; margin: 0 auto; padding: 60px 24px 0; border-top: 3px solid #A32D2D; }
+  .break-label { font-family: 'DM Sans', sans-serif; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: #A32D2D; margin-bottom: 24px; }
+
+  /* Chart styles */
+  .chart-wrap { background: #fff; border: 1px solid #E8E4DD; border-radius: 10px; padding: 24px 20px 16px; margin: 24px 0; overflow-x: auto; }
+  .chart-title-sm { font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; color: #111; margin-bottom: 4px; }
+  .chart-subtitle-sm { font-family: 'DM Sans', sans-serif; font-size: 13px; color: #888; margin-bottom: 12px; }
+  .chart-note { font-size: 15px; line-height: 1.7; color: #444; margin-top: 14px; }
+  svg text { font-family: 'DM Sans', sans-serif; }
+  .annotation { font-size: 15px; fill: #185FA5; font-weight: 500; }
+  .annotation-bad { font-size: 15px; fill: #A32D2D; font-weight: 500; }
+  .annotation-good { font-size: 15px; fill: #0F6E56; font-weight: 500; }
+  .grid-line { stroke: #EDEBE6; stroke-width: 0.5; }
+  .axis-label { font-size: 15px; fill: #999; }
+  .axis-label-bold { font-size: 15px; fill: #666; font-weight: 500; }
+  .data-label { font-size: 15px; fill: #333; font-weight: 500; }
+  .ref-line { stroke: #E24B4A; stroke-width: 0.8; stroke-dasharray: 4 3; }
+  .ref-label { font-size: 15px; fill: #E24B4A; }
+  .normal-zone { fill: #E1F5EE; opacity: 0.4; }
+
+  /* Visual decorations */
+  .vis { text-align: center; margin: 32px 0; }
+  .vis svg { max-width: 500px; }
+</style>
+</head>
+<body>
+<nav class="tab-nav">
+  <div class="tab-nav-inner">
+    <a href="index.html">Overview</a>
+    <a href="harrisons-journey.html">Harrison&rsquo;s Case</a>
+    <a href="town-bottom.html" class="active">Understanding IBD</a>
+    <a href="appendix-calprotectin.html">Supporting Material</a>
+  </div>
+  <div class="tab-nav-sub">
+    <a href="hive-on-vine-hill.html" class="active">The Hive</a>
+    <a href="town-bottom.html">The Town</a>
+    <a href="villus-accord.html">Villus Accord</a>
+    <a href="disease-circuit.html">Disease Circuit</a>
+    <a href="gut-game-theory.html">Gut D&eacute;tente</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- PART ONE: THE BEE NARRATIVE                          -->
+<!-- ══════════════════════════════════════════════════════ -->
+
+<div class="header">
+  <h1>The Hive on Vine Hill</h1>
+  <p class="dek">An adventure that puts the <strong>bee</strong> in IBD.</p>
+  <p class="byline">A story about a colony, a beekeeper, and a war that no one declared</p>
+  <hr class="rule">
+</div>
+
+<div class="body">
+
+<p class="chapter">I. The hive in spring</p>
+
+<p class="dropcap">The hive sat on a wooden stand in the shade of a coast live oak, halfway up the hill behind the beekeeper&rsquo;s house. It was a good spot. Morning sun hit the entrance by seven, which got the foragers moving early. By noon the canopy shaded the boxes, which mattered in September when the Scotts Valley heat could climb past ninety. Below the hill, Carbonero Creek traced a green line through the oaks and madrones down toward the San Lorenzo Valley, and beyond that, on clear days, you could see the marine layer pooled over Santa Cruz like a silver lid.</p>
+
+<p>The beekeeper had kept bees for eight years. Three hives at peak, two now. This one &mdash; the oak hive, he called it &mdash; was his strongest. Italian stock, requeened two years ago with a Kona queen from a Big Island breeder, and the colony had built up beautifully. Twenty frames of brood by April. A calm temperament. A laying pattern you could set a watch by: solid, concentric, textbook ovals of capped brood surrounded by rings of pollen and honey, no gaps, no scattered cells, no sign of anything wrong.</p>
+
+<p>If you opened the hive on a good day in May &mdash; toyon blooming on the ridge, blackberry beginning to open along the creek, the manzanita flow just finished &mdash; you&rsquo;d find a colony running like a city that knew its business. And like any city, it ran on systems that most of its inhabitants never thought about.</p>
+
+<div class="section-break">&middot; &middot; &middot;</div>
+
+<p class="chapter">II. The envelope</p>
+
+<p>The first system was the walls.</p>
+
+<p>Every surface inside the hive was coated with propolis &mdash; a resinous, reddish-brown glue that the bees manufactured from tree sap, mostly coast live oak and Douglas fir around here, mixed with beeswax and their own enzymes. The beekeeper cursed it. It gummed up the frames, sealed the inner cover to the top box, stained his hive tool and his fingers a permanent amber-brown. Every inspection started with prying and cracking.</p>
+
+<p>But propolis was not glue. It was a fortress wall.</p>
+
+<p>The propolis envelope &mdash; that thin, continuous coating over every interior surface of the hive body &mdash; was antimicrobial. Antifungal. Antiviral. It killed or suppressed nearly every pathogen that tried to establish itself on the wood. Bees applied it constantly, repairing cracks, sealing joints, coating any rough surface they couldn&rsquo;t remove. A colony with a strong propolis envelope got sick less often, recovered faster from stress, and handled the steady background pressure of mites, molds, and opportunistic fungi that every hive lives with.</p>
+
+<p>The envelope was not a passive barrier. It was an institution. The bees maintained it the way a town maintains its walls: through continuous, unglamorous, daily labor that nobody celebrates until it stops.</p>
+
+<div class="section-break">&middot; &middot; &middot;</div>
+
+<p class="chapter">III. The bread</p>
+
+<p>The second system was the food.</p>
+
+<p>Not the honey &mdash; everyone knew about honey. The part most people didn&rsquo;t know about was the bread. Bee bread. In the cells surrounding the brood nest, packed in tight and glistening slightly, you could see it if you knew where to look: layers of pollen in different colors &mdash; pale yellow from the coyote brush, deep orange from the California poppy, ochre from the coastal sage &mdash; tamped down and sealed with a thin layer of honey.</p>
+
+<p>Raw pollen, it turns out, is surprisingly hard for bees to digest. The grains are wrapped in a tough outer shell &mdash; sporopollenin, one of the most indestructible biological polymers on earth &mdash; and a bee&rsquo;s gut cannot break it open efficiently on its own. What the colony needed was fermentation. And fermentation required partners.</p>
+
+<p>Inside the stored pollen, populations of lactic acid bacteria and yeasts &mdash; organisms that lived nowhere else, that had co-evolved with honeybees for millions of years &mdash; went to work. They broke the sporopollenin. They pre-digested the proteins. They produced organic acids that preserved the bread and suppressed the growth of molds and pathogens. The result was bee bread: a living, fermented food that was more nutritious, more digestible, and more microbiologically stable than the raw pollen it came from.</p>
+
+<p>The colony could not make bee bread without these microbes. And the microbes could not survive without the colony&rsquo;s stored pollen. It was a partnership &mdash; ancient, obligate, invisible. The beekeeper never thought about it. He saw colored pollen in the cells and called it food. He didn&rsquo;t see the organisms that made the food actually work.</p>
+
+<p>What mattered was the diversity. When the foragers brought back pollen from many sources &mdash; the manzanita, the toyon, the blackberry, the coastal scrub, the wildflowers along the old logging roads above Scotts Valley &mdash; the bread was rich and balanced, and the fermenting populations were diverse and resilient. When forage narrowed &mdash; drought, or a bad year, or the November dearth when almost nothing bloomed &mdash; the bread simplified. Fewer pollen types. Fewer microbial species. A less stable fermentation. The colony could survive on simple bread, but it was like a town surviving on rice alone: technically sufficient, quietly weakening.</p>
+
+<div class="section-break">&middot; &middot; &middot;</div>
+
+<p class="chapter">IV. The guards and the calm</p>
+
+<p>The third system was the one the beekeeper understood best, because it was the one he could feel.</p>
+
+<p>At the entrance to every hive, guard bees stood their shifts. Their job was to check every bee that landed on the threshold. Colony scent? In you go. Foreign scent? Challenged, hassled, driven off. It was a checkpoint, and in a calm hive, it operated with a kind of bored efficiency &mdash; a quick antennal pat, a sniff, a wave-through. The guards were relaxed because almost everything they encountered was routine: returning foragers heavy with nectar, pollen-dusted field bees, the occasional drone lumbering home. Same as yesterday. Same as last week.</p>
+
+<p>When the guards were calm, they fanned Nasanov pheromone at the entrance &mdash; a lemony, herbal scent produced from a gland on the abdomen. The beekeeper could sometimes smell it on warm evenings: a clean, citrusy waft from the hive entrance. Nasanov was a homing signal. It said: <em>this is home, come back, all is well.</em> Foragers followed it in. Newly oriented bees locked onto it. It was the chemical signature of a colony at peace with itself.</p>
+
+<p>But the guards carried a second compound in a different gland &mdash; one the beekeeper knew far better, because he&rsquo;d been on the wrong end of it many times. Isopentyl acetate. Alarm pheromone. Released from the sting shaft, it smelled like bananas &mdash; a sharp, acrid, unmistakable scent that meant exactly one thing: <em>threat.</em></p>
+
+<p>Alarm pheromone did not merely signal danger. It <em>recruited.</em> Every bee that smelled it became more aggressive. Every bee that stung released more of it. It was an amplifying loop &mdash; one alarm triggering another, spreading outward from the entrance in a wave of escalating aggression. In a brief, targeted burst, this was a superb defense. A bear at the entrance, a skunk pawing at the landing board &mdash; the alarm fired, the colony mobilized, the threat was driven off, and within an hour the Nasanov had returned and the guards were calm again.</p>
+
+<p>The system was designed for emergencies. Brief ones.</p>
+
+<div class="pullquote">
+  <p>Same glands. Same bees. Same entrance. One compound trained calm; the other trained war. Which one dominated depended entirely on what the guards were encountering.</p>
+</div>
+
+<div class="section-break">&middot; &middot; &middot;</div>
+
+<p class="chapter">V. The first season</p>
+
+<p>The trouble, when it started, did not look like trouble.</p>
+
+<p>It was September &mdash; the beginning of the long dearth, when the manzanita and the sage were finished and nothing much would bloom until the rains brought clover in late winter. The oak hive had come through summer with good numbers. Plenty of stores. The beekeeper did a mite wash in August &mdash; powdered sugar roll, standard practice &mdash; and the count was moderate. Three mites per hundred bees. Not crisis. Not nothing. He made a note: treat in October, after the last honey pull.</p>
+
+<p>But something else was happening that the mite count didn&rsquo;t capture.</p>
+
+<p>The propolis envelope had thinned. Not everywhere &mdash; just in the lower brood box, where the oldest comb lived, where the wood was most weathered. The bees were still collecting resin, still applying it, but the coverage was patchy. Gaps had appeared along the bottom board seams. The beekeeper didn&rsquo;t notice. He never inspected the propolis. Nobody does.</p>
+
+<p>And the forage had narrowed. The drought that year had been mild but persistent &mdash; not dramatic enough to make the news, but enough to shorten the late-summer bloom. The buckwheat along Granite Creek Road hadn&rsquo;t flowered. The wild mustard came and went early. By September, the foragers were working a smaller menu than usual, and the bee bread in the cells near the brood nest was less varied &mdash; mostly single-source, mostly pale, mostly from the surviving eucalyptus along Scotts Valley Drive. The fermentation was running, but it was running on a simplified community. Fewer bacterial species. A less robust conversion.</p>
+
+<p>None of this was a crisis. None of it was even visible to the beekeeper. But the envelope was thinner, the bread was simpler, the mites were a low-grade stress &mdash; and the colony was entering the dearth leaning on systems that were all, simultaneously, slightly degraded.</p>
+
+<div class="section-break">&middot; &middot; &middot;</div>
+
+<p class="chapter">VI. The flip</p>
+
+<p>The beekeeper noticed the temperament change first.</p>
+
+<p>The oak hive had always been gentle. He could work it in a t-shirt most days, veil on, no gloves. But one afternoon in late October, pulling frames to check the fall stores, the bees came off the comb angry. Not the focused, purposeful defense of a colony that&rsquo;s been disturbed &mdash; he knew that mood, the way they&rsquo;d bump his veil and then settle once he moved slowly. This was different. Edgy. Diffuse. Bees pinging off his arms, his shirt, the hive tool. He took a sting through his jeans &mdash; something that almost never happened with this colony.</p>
+
+<p>He closed up and walked away. Figured he&rsquo;d come back another day. Bad mood. Every hive has them.</p>
+
+<p>But the bad mood didn&rsquo;t pass.</p>
+
+<p>The next inspection, two weeks later, was the same. And he noticed something new: at the entrance, the guard bees were hassling returning foragers. Not foreign bees &mdash; their own foragers. Bees landing on the threshold with full pollen baskets were being challenged, grabbed, inspected with an intensity he&rsquo;d only seen directed at robbers. Some were getting through. Some were being driven off the landing board, tumbling into the grass, pollen loads and all.</p>
+
+<p>The beekeeper had seen robbing behavior before &mdash; Italian bees from a neighbor&rsquo;s hive probing for a way in during the dearth. But these were the colony&rsquo;s own bees. He could see the pollen. He could see them trying to get home. And the guards were treating them like enemies.</p>
+
+<p>The Nasanov scent at the entrance was gone. In its place, a faint, persistent banana smell. Alarm pheromone. Not the sharp burst of a defensive response &mdash; this was low-grade, continuous, a background hum of chemical suspicion that never shut off.</p>
+
+<p>The guards had flipped.</p>
+
+<p>Not because anything had invaded. Not because a bear had come or a skunk had scratched or a robber bee had breached the entrance. The guards had flipped because everything <em>around</em> them had changed just enough &mdash; the thinned propolis letting in unfamiliar air, the simplified bread subtly altering colony scent, the low-grade mite stress shifting the chemical background &mdash; that the returning foragers no longer smelled exactly right. Not foreign. Not <em>wrong</em>. Just not quite the same as yesterday. And for a guard bee running on a hair-trigger pheromone system, <em>not quite the same</em> was enough.</p>
+
+<p>The alarm recruited more guards. The new guards, primed by the alarm pheromone in the air, were even more suspicious than the last shift. They challenged more aggressively. They stung more often. And every sting released more alarm pheromone, which primed the <em>next</em> shift, which challenged even more aggressively.</p>
+
+<p>The beekeeper thought: queenless? He looked for eggs. Eggs were there. The queen was laying. This wasn&rsquo;t a queenless hive. This was something else.</p>
+
+<div class="section-break">&middot; &middot; &middot;</div>
+
+<p class="chapter">VII. The spiral</p>
+
+<p>By November, the damage was visible.</p>
+
+<p>Foragers were returning at lower rates. Not because the forage was exhausted &mdash; the eucalyptus was still yielding, and a few late-season flowers clung on along the creek &mdash; but because too many foragers were being turned away at the entrance. Some tried repeatedly, circling, landing, being rebuffed, landing again. Some gave up and clustered in a confused knot on the outside of the hive body, cold and disoriented. A few drifted to the beekeeper&rsquo;s weaker second hive. Most just died.</p>
+
+<p>Less foraging meant less pollen. Less pollen meant simpler bread. Simpler bread meant a less diverse fermentation &mdash; and a subtly altered colony scent, which made the guards even more suspicious of returning foragers, which reduced foraging further.</p>
+
+<p>And something else was happening inside. The nurse bees &mdash; the young workers who should have been feeding larvae, building comb, tending the queen &mdash; were leaving the brood nest and moving toward the entrance. Not all of them. But too many. They were being pulled into guard duty, recruited by the persistent alarm pheromone that now permeated the lower box. Every nurse that became a guard was a nurse lost from brood care. Larvae went unfed. Capped brood emerged into a colony with fewer attendants. The brood pattern, which had been textbook in May, was developing gaps.</p>
+
+<p>The beekeeper opened the hive on Thanksgiving weekend and stood there for a long time, trying to read what he was seeing. The population was down &mdash; noticeably, maybe thirty percent below where it should have been going into winter. The brood pattern was scattered. There was alarm pheromone in the air even before he cracked the inner cover. And the comb in the lower box looked wrong. Not damaged, exactly. Neglected. Cells uncapped and left empty. Some with multiple eggs &mdash; but no, the queen was still there, still laying. He found her on the fourth frame. She was fine. The colony was not.</p>
+
+<div class="pullquote">
+<p>Every bee was following its programming. The guards guarded. The nurses nursed &mdash; until the alarm pulled them away. The foragers foraged &mdash; until the entrance wouldn&rsquo;t let them back in. No one had made a mistake. The colony was tearing itself apart, and every participant was doing exactly what its chemistry told it to do.</p>
+</div>
+
+<p>He did a mite wash. The count was five per hundred &mdash; higher than August, but not catastrophic. He dusted them with powdered sugar. He reduced the entrance to slow any actual robbing. He put a pollen patty on top of the frames. Standard interventions. Reasonable interventions. The kind of thing that helps a colony that&rsquo;s stressed by one thing at a time.</p>
+
+<p>But this colony was not stressed by one thing. It was caught in a loop, and the beekeeper&rsquo;s interventions were touching the surface without reaching the machinery underneath.</p>
+
+<div class="section-break">&middot; &middot; &middot;</div>
+
+<p class="chapter">VIII. The wax moths</p>
+
+<p>By January, the beekeeper knew he was in real trouble.</p>
+
+<p>He&rsquo;d lifted the back of the hive to check the weight &mdash; his wintertime habit, a quick gauge of stores without opening the boxes in the cold &mdash; and it felt light. Too light. He waited for a warm afternoon, suited up, and went in.</p>
+
+<p>The population had crashed. Two frames of bees, maybe two and a half, huddled in the upper box. The lower box was nearly empty. And in the corners of that lower box, in the abandoned comb where no bees patrolled, he found what he&rsquo;d been afraid of.</p>
+
+<p>Wax moth larvae.</p>
+
+<p>Not many. Not yet. But they were there &mdash; pale, soft-bodied caterpillars tunneling through the wax, leaving silk-lined galleries in their wake. In a strong colony, a wax moth larva never gets a foothold. A worker bee finds it, stings it, drags it out. The policing is effortless and absolute. But in a weakened colony &mdash; one that has pulled its nurses to the entrance, that has lost its foragers, that has fewer bees than it needs to patrol the comb &mdash; the moths move in.</p>
+
+<p>And here was the thing the beekeeper understood in his hands, in the ruined frame he pulled from the lower box: wax moth damage is not reversible. The silk-lined tunnels, the chewed-through cell walls, the structural webbing that the larvae spin through the comb &mdash; bees cannot repair this. You don&rsquo;t clean up a wax moth infestation. You throw the frames away. The comb is gone. Not damaged. <em>Gone.</em> Replaced by something the bees can&rsquo;t use, built by an organism that feeds on the wax itself and doesn&rsquo;t need the original problem &mdash; the mites, the population crash, the entrance war &mdash; to keep going. The moth larvae are self-sustaining. They are a secondary catastrophe that, once established, runs on its own fuel.</p>
+
+<p>He pulled three frames of ruined comb and burned them in the yard. The remaining comb was intact. The upper box was still clean. But the architecture of the colony &mdash; the structural foundation, the drawn comb that had taken the bees months to build &mdash; had been permanently reduced. You cannot un-burn a frame. You cannot un-tunnel a comb.</p>
+
+<div class="section-break">&middot; &middot; &middot;</div>
+
+<p class="chapter">IX. The sticky board</p>
+
+<p>Through all of this, the beekeeper had been watching one instrument.</p>
+
+<p>Underneath the hive, on a tray that slid into the screened bottom board, was a sticky board &mdash; a white sheet coated with a thin layer of petroleum jelly. Everything that fell through the screen landed on the board: mite bodies, wax flakes, pollen grains, bits of propolis, and the debris of the colony&rsquo;s internal economy. Every few days, the beekeeper slid the board out, carried it to his workbench, and counted.</p>
+
+<p>He didn&rsquo;t need to open the hive. He didn&rsquo;t need to pull frames or disturb the cluster or break the propolis seal. He read the waste stream.</p>
+
+<p>In a healthy colony, the sticky board is boring. Some wax cappings. A few mites &mdash; one or two a day in summer is unremarkable. A scattering of pollen dust. The debris of routine life.</p>
+
+<p>In September, the mite count on the board had been four per day. By November, it was twelve. By January &mdash; the inspection when he found the wax moths &mdash; it was twenty-eight, along with an unusual amount of fine wax debris and tiny fragments of chewed comb: the signature of moth activity in the lower box.</p>
+
+<p>The board was telling the same story the bees were telling, but in a language the beekeeper could read without intruding. The debris count was the smoke above the city. You couldn&rsquo;t see the fire from outside, but you could see the smoke, and the amount of smoke told you how bad it was.</p>
+
+<p>He made a graph on the back of an envelope. The line went up and to the right, and it did not bend.</p>
+
+<div class="section-break">&middot; &middot; &middot;</div>
+
+<p class="chapter">X. The beekeeper&rsquo;s choice</p>
+
+<p>The beekeeper had options. He&rsquo;d been keeping bees long enough to know the menu.</p>
+
+<p>The first option was a miticide strip. Apivar, CheckMite+, one of the chemical treatments that you hang between the frames and leave for weeks. They work. They kill mites broadly and effectively. But they kill other things too. The chemicals accumulate in the wax. They disrupt the fermentation communities in the stored pollen. They stress the bee bread microbes. They are, in the language of beekeeping, a blunt instrument &mdash; effective against the target, damaging to everything else. The beekeeper had used strips years ago on a different hive and watched the colony survive the mites but come out the other side sluggish and slow to build up, as if something in the colony&rsquo;s chemistry had been flattened. The mites were gone but the vitality was gone too.</p>
+
+<p>The second option was more precise. Oxalic acid &mdash; a naturally occurring compound, vaporized into the hive with a small wand heated by a car battery. It killed mites on contact with devastating efficiency, but it did not accumulate in the wax. It did not disrupt the bread. It did not flatten the colony&rsquo;s chemistry. The catch was timing: oxalic acid only kills mites that are exposed on the surface of adult bees. Mites hiding inside capped brood cells are protected. So you had to time the treatment to the broodless period &mdash; that narrow winter window when the queen has stopped laying and all the mites are phoretic, riding on adult bees with nowhere to hide.</p>
+
+<p>A blunt weapon that works anytime, or a precise weapon that works only if you understand the biology well enough to hit the right window.</p>
+
+<p>He chose the precise weapon. Mid-February, during a cold snap when he was confident the queen had stopped laying, he vaporized oxalic acid into the hive. One treatment. Targeted. Timed to the moment of maximum vulnerability for the specific thing that had tipped the colony into its spiral.</p>
+
+<p>He did not expect miracles. The mites were only one factor &mdash; the match, not the fire. But they were the factor he could reach, and the vaporizer was the tool that could reach them without collateral damage.</p>
+
+<div class="section-break">&middot; &middot; &middot;</div>
+
+<p class="chapter">XI. The count drops</p>
+
+<p>Three weeks later, he pulled the sticky board.</p>
+
+<p>Mite count: six per day. Down from twenty-eight. The wax debris was less. The fine chewed-comb fragments were gone &mdash; he&rsquo;d removed the moth-damaged frames, and the remaining comb was being patrolled again by a colony that, slowly, was redirecting its energy.</p>
+
+<p>He didn&rsquo;t open the hive. He didn&rsquo;t need to. The board told him.</p>
+
+<p>By March, the manzanita was blooming on the ridge and the foragers were working it hard. The pollen coming in was diverse again &mdash; orange, yellow, cream, the deep red of manzanita. The guard bees at the entrance were waving foragers through without challenge. The Nasanov scent was back. He could smell it from ten feet away on a warm afternoon, and it smelled like it had in May: lemony, clean, calm.</p>
+
+<p>He pulled the sticky board in early April. Mite count: two per day. Wax debris: minimal. A few pollen grains. The unremarkable detritus of a colony doing its job.</p>
+
+<p>He opened the hive for the first time since February. Six frames of brood in the upper box, solid pattern, no gaps. The queen was laying well. The bread cells were packed with multicolored pollen &mdash; the fermentation was running on a full community again. New white wax along the top bars, the first sign of a building impulse. The bees were calm on the frames. He worked without gloves.</p>
+
+<p>The colony had not recovered to where it was in May of the previous year. The lower box was still thin &mdash; drawn comb where the moths had been was gone, replaced with empty frames that the bees would need to build out fresh. That would take time and resources. The architecture had been permanently reduced, and rebuilding it would cost the colony weeks of wax production and thousands of forager-hours of nectar.</p>
+
+<p>But the spiral had broken. The guards had flipped back. The nurses were nursing. The foragers were foraging. The bread was fermenting. The alarm pheromone was gone. And the sticky board &mdash; the instrument that had tracked the whole catastrophe from outside, without ever opening the hive &mdash; said the same thing every time he checked it now.</p>
+
+<p>The count was low. The debris was clean.</p>
+
+<p>The war was over, or at least the active fighting was. What was left was the work of rebuilding, frame by frame, cell by cell, in a colony that had lost architecture it could never fully get back &mdash; but that was, finally, at peace.</p>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- VISUAL: Simple hexagonal comb pattern, peaceful -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="vis">
+<svg viewBox="0 0 500 80" xmlns="http://www.w3.org/2000/svg">
+  <g opacity="0.3" fill="none" stroke="#D4A020" stroke-width="0.8">
+    <polygon points="60,20 72,28 72,44 60,52 48,44 48,28"/>
+    <polygon points="84,20 96,28 96,44 84,52 72,44 72,28"/>
+    <polygon points="108,20 120,28 120,44 108,52 96,44 96,28"/>
+    <polygon points="132,20 144,28 144,44 132,52 120,44 120,28"/>
+    <polygon points="156,20 168,28 168,44 156,52 144,44 144,28"/>
+    <polygon points="180,20 192,28 192,44 180,52 168,44 168,28"/>
+    <polygon points="204,20 216,28 216,44 204,52 192,44 192,28"/>
+    <polygon points="228,20 240,28 240,44 228,52 216,44 216,28"/>
+    <polygon points="252,20 264,28 264,44 252,52 240,44 240,28"/>
+    <polygon points="276,20 288,28 288,44 276,52 264,44 264,28"/>
+    <polygon points="300,20 312,28 312,44 300,52 288,44 288,28"/>
+    <polygon points="324,20 336,28 336,44 324,52 312,44 312,28"/>
+    <polygon points="348,20 360,28 360,44 348,52 336,44 336,28"/>
+    <polygon points="372,20 384,28 384,44 372,52 360,44 360,28"/>
+    <polygon points="396,20 408,28 408,44 396,52 384,44 384,28"/>
+    <polygon points="420,20 432,28 432,44 420,52 408,44 408,28"/>
+    <polygon points="440,20 452,28 452,44 440,52 428,44 428,28"/>
+  </g>
+</svg>
+</div>
+
+<div class="section-break">&middot; &middot; &middot;</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- PART TWO: THE REVEAL                                 -->
+<!-- ══════════════════════════════════════════════════════ -->
+
+</div><!-- end .body -->
+
+<div class="reveal-header">
+  <div class="reveal-label">PART TWO &nbsp;&middot;&nbsp; THE MAPPING</div>
+  <h2>The Boy in the Canyon</h2>
+  <p class="reveal-dek">Everything you just read has already happened. Not to a hive. To a child.</p>
+  <hr class="rule">
+</div>
+
+<div class="body">
+
+<p>Harrison was three and a half when his stools turned bloody. He was seven when his doctors sent a camera into his intestine and found a war that looked, on the surface, like ulcerative colitis &mdash; but turned out to be Crohn&rsquo;s disease, an autoimmune condition in which the body&rsquo;s immune system attacks its own gut. He was eight when a targeted drug finally silenced the alarm signal driving the attack, and for the first time in his recorded medical history, the inflammation stopped.</p>
+
+<p>His story maps, point for point, to the hive on Vine Hill.</p>
+
+<p>Not loosely. Not as a vague metaphor. The systems are structurally the same: a living barrier maintained at constant cost. A population of tolerated foreign organisms that the host depends on and cannot live without. A surveillance apparatus that can flip, on a single chemical signal, from calm tolerance to self-destructive aggression. A feedback loop in which every participant behaves rationally and the outcome is catastrophic. An instrument that reads the waste stream from outside. And a treatment decision between a blunt weapon and a precise one.</p>
+
+<p>Here is the correspondence.</p>
+
+<table class="map-table">
+  <thead>
+    <tr>
+      <th>The Hive</th>
+      <th>The Gut</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Propolis envelope &mdash; antimicrobial coating on every interior surface, constantly maintained</td>
+      <td>Intestinal barrier &mdash; a single-cell-thick wall of epithelial cells linked by tight junctions, coated with a mucus bilayer, defended by Paneth cells producing antimicrobial defensins</td>
+    </tr>
+    <tr>
+      <td>Bee bread microbes &mdash; lactic acid bacteria and yeasts that ferment stored pollen into digestible, nutritious food</td>
+      <td>Gut commensals &mdash; trillions of bacteria (especially <em>Faecalibacterium prausnitzii</em>) that produce butyrate, the primary fuel for the cells of the intestinal wall and a driver of immune tolerance</td>
+    </tr>
+    <tr>
+      <td>Diverse forage &mdash; manzanita, toyon, blackberry, sage &mdash; supporting diverse and resilient fermentation</td>
+      <td>Microbial diversity &mdash; hundreds of bacterial species maintaining a stable, resilient ecosystem that resists pathogenic takeover</td>
+    </tr>
+    <tr>
+      <td>Guard bees fanning Nasanov pheromone &mdash; the colony&rsquo;s calm, tolerant state</td>
+      <td>Dendritic cells producing TGF-&beta; and retinoic acid &mdash; the tolerogenic signals that train new regulatory T cells (Tregs), the peacekeepers of the immune system</td>
+    </tr>
+    <tr>
+      <td>Guard bees releasing alarm pheromone (isopentyl acetate) &mdash; the aggressive, recruiting state</td>
+      <td>Dendritic cells producing IL-23 &mdash; the inflammatory signal that trains undifferentiated immune cells into Th17 effectors, the soldiers</td>
+    </tr>
+    <tr>
+      <td>The flip &mdash; same guards, same entrance, different pheromone, based on what they&rsquo;re encountering</td>
+      <td>The inversion &mdash; same dendritic cells, same lamina propria, different cytokine output. The machinery that trained peacekeepers now produces warriors</td>
+    </tr>
+    <tr>
+      <td>Nurse bees leaving brood duty to become guards, recruited by persistent alarm pheromone</td>
+      <td>Treg-to-Th17 plasticity &mdash; regulatory T cells, under sustained IL-23 and IL-6 pressure, lose their Foxp3 programming and convert into the effectors they were supposed to suppress</td>
+    </tr>
+    <tr>
+      <td>Colony attacking its own returning foragers, reducing pollen income, simplifying the bread</td>
+      <td>Immune system attacking commensal bacteria, reducing butyrate production, collapsing the Treg training pipeline</td>
+    </tr>
+    <tr>
+      <td>Wax moth larvae &mdash; tunneling through abandoned comb, self-sustaining, structurally irreversible</td>
+      <td>Fibroblast activation and fibrosis &mdash; chronically activated fibroblasts depositing disordered collagen, acquiring autocrine survival loops, permanently remodeling the tissue architecture</td>
+    </tr>
+    <tr>
+      <td>The sticky board &mdash; reading debris in the waste stream without opening the hive</td>
+      <td>Fecal calprotectin &mdash; measuring dead neutrophils in the stool without scoping the intestine. Calprotectin is an indestructible protein carried by neutrophils; when they die in inflamed tissue, it washes downstream and out of the body intact</td>
+    </tr>
+    <tr>
+      <td>Chemical miticide strip &mdash; broad, effective, residue in the wax, flattens the colony&rsquo;s chemistry</td>
+      <td>Infliximab (anti-TNF) &mdash; blocks tumor necrosis factor broadly, suppresses inflammation system-wide, effective but nonspecific</td>
+    </tr>
+    <tr>
+      <td>Oxalic acid vaporization &mdash; precise, no wax contamination, timed to the biology, targets the specific vector</td>
+      <td>Risankizumab (anti-IL-23) &mdash; blocks the specific cytokine that flips dendritic cells from training peacekeepers to training soldiers, leaving the rest of the immune system intact</td>
+    </tr>
+    <tr>
+      <td>Pollen patty / entrance reducer &mdash; helpful, surface-level, not enough</td>
+      <td>Pentasa (mesalamine) &mdash; a topical anti-inflammatory that calms the intestinal surface; helps but cannot achieve deep suppression of the underlying immune drive</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="section-break">&middot; &middot; &middot;</div>
+
+<p class="chapter">Harrison&rsquo;s numbers</p>
+
+<p>Now read it again with the data.</p>
+
+<p><span class="timeline-marker">December 2020</span></p>
+
+<p>Harrison was diagnosed with Crohn&rsquo;s disease at three and a half years old, after bloody stools that had been preceded by a lifetime of loose stools nobody had flagged as abnormal. Family history: a paternal grandmother with Crohn&rsquo;s, a mother with lupus. Two autoimmune conditions on two sides. The genetic susceptibility was written before he was born &mdash; the way the oak hive&rsquo;s queen carried whatever trait had left the propolis thin in the lower box.</p>
+
+<p>He was started on Pentasa &mdash; mesalamine, two capsules a day. <span class="bee-callback">The pollen patty. The entrance reducer.</span></p>
+
+<p><span class="timeline-marker">March 2021</span></p>
+
+<p>First fecal calprotectin measurement: 1,510 &mu;g/g. Normal is below 50. <span class="bee-callback">The first sticky-board pull. The count was already high.</span> The war had been running before anyone started measuring.</p>
+
+<p><span class="timeline-marker">May 2022</span></p>
+
+<p>Calprotectin: 4,080. Eighty-two times normal. First siege. A colonoscopy found no ulcers &mdash; the surface looked battered but the deep structure was intact. Pentasa was increased from two capsules to three. <span class="bee-callback">A bigger pollen patty.</span></p>
+
+<p><span class="timeline-marker">November 2022</span></p>
+
+<p>Calprotectin dropped to 666. The lowest it would ever go on Pentasa. Still thirteen times normal. <span class="bee-callback">The sticky board went from twenty-eight to twelve. Better. Not good.</span></p>
+
+<p><span class="timeline-marker">2023&ndash;2024</span></p>
+
+<p>The long smolder. Calprotectin: 1,260 &rarr; 1,100 &rarr; 789. Pentasa now at four capsules a day. The war never stopped. It just simmered. <span class="bee-callback">The line on the back of the envelope, drifting but never reaching normal.</span></p>
+
+<p><span class="timeline-marker">March 2025</span></p>
+
+<p>Calprotectin: 4,300. Eighty-six times normal. Second siege. Harrison was seven. Vomiting at school. More time on the toilet at night. He never complained of pain. <span class="bee-callback">The sticky board spiked back to twenty-eight. The spiral had returned.</span></p>
+
+<p>His doctor sent two cameras into the canyon. A colonoscope from below found diffuse inflammation across the entire colon &mdash; continuous, granular, angry. It looked like ulcerative colitis. But an upper endoscope found ulcers in the duodenum, hundreds of centimeters upstream from the colon. UC doesn&rsquo;t go there. Crohn&rsquo;s does. Biopsies confirmed chronic ileitis in tissue the camera had called normal. The inflammation was deeper than the surface showed. <span class="bee-callback">The way the beekeeper lifted the back of the hive and felt it light, even before opening it.</span></p>
+
+<div class="clinical-note">
+  <p><span class="clinical-label">Diagnosis:</span> Crohn&rsquo;s colitis with upper GI and ileal involvement</p>
+  <p><span class="clinical-label">Key findings:</span> Pancolonic granularity, ileocecal valve ulcers, duodenal necrotizing ulceration, histologic chronic ileitis in endoscopically normal ileum</p>
+</div>
+
+<p class="chapter">The treatment decision</p>
+
+<p>Harrison&rsquo;s initial gastroenterologist recommended infliximab &mdash; an anti-TNF antibody, the standard first-line biologic for moderate-to-severe pediatric Crohn&rsquo;s. Anti-TNF is the miticide strip of IBD treatment: broadly effective, widely used, proven. It suppresses tumor necrosis factor system-wide, dampening inflammation across the board. It works. But like the strip in the hive, it dampens <em>everything</em> &mdash; the inflammatory response, but also parts of the immune coordination the body actually needs.</p>
+
+<p>Harrison&rsquo;s family sought a second opinion at Mount Sinai, under Dr. Marla Dubinsky and Dr. Elizabeth Spencer. Their team chose risankizumab &mdash; a monoclonal antibody against IL-23.</p>
+
+<p><span class="bee-callback">The oxalic acid vaporizer.</span></p>
+
+<p>IL-23 is the alarm pheromone of the gut. It is the specific signal that flips dendritic cells from training Tregs (peacekeepers) to training Th17 cells (soldiers). Block IL-23 and you don&rsquo;t shut down the immune system wholesale. You silence the specific recruiting signal that was driving the military buildup. The peacekeepers can recover. The soldiers stop being produced. The commensals, no longer under attack, can recolonize. The butyrate supply can rebuild.</p>
+
+<p>It is a more precise intervention. It requires understanding the biology deeply enough to know which signal to target &mdash; the way the beekeeper had to know when the broodless window fell and what oxalic acid did to phoretic mites. You don&rsquo;t reach for this tool first. You reach for it when you understand the mechanism well enough to be precise.</p>
+
+<p>Risankizumab is not yet approved for pediatric Crohn&rsquo;s. Getting insurance to cover it for a seven-year-old required persistence. But the rationale was sound: in a young child with decades of disease ahead of him, the goal is not just suppression but the possibility of resetting the tolerance system entirely. Stop the alarm. Let the peacekeepers rebuild. Let the tissue forget it was ever at war.</p>
+
+<div class="section-break">&middot; &middot; &middot;</div>
+
+<p class="chapter">The count drops</p>
+
+<p><span class="timeline-marker">July 2025</span></p>
+
+<p>Three months on risankizumab. Calprotectin: 102. Borderline &mdash; above the normal threshold of 50, below any previous measurement on record. <span class="bee-callback">The first sticky-board pull after treatment. Six per day, down from twenty-eight.</span></p>
+
+<p><span class="timeline-marker">November 2025</span></p>
+
+<p>Calprotectin: 25. Normal. Below 50 for the first time in Harrison&rsquo;s entire medical history. Below the lowest Pentasa had ever achieved. The war was over.</p>
+
+<p><span class="bee-callback">Two per day. Clean board. Nasanov at the entrance.</span></p>
+
+<!-- ═══ CALPROTECTIN CHART ═══ -->
+<div class="chart-wrap">
+  <div class="chart-title-sm">Fecal calprotectin &mdash; Harrison&rsquo;s full arc</div>
+  <div class="chart-subtitle-sm">&mu;g/g stool &middot; Normal &lt; 50 &middot; Each data point is a sticky-board reading from the canyon</div>
+  <svg width="100%" viewBox="0 0 700 310">
+    <defs>
+      <marker id="blue-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+        <path d="M2 2L8 5L2 8" fill="none" stroke="#185FA5" stroke-width="1.5" stroke-linecap="round"/>
+      </marker>
+    </defs>
+    <line x1="80" y1="30" x2="80" y2="220" stroke="#EDEBE6" stroke-width="0.5"/>
+    <line x1="80" y1="220" x2="660" y2="220" stroke="#ccc" stroke-width="0.8"/>
+    <line x1="80" y1="220" x2="660" y2="220" class="grid-line"/>
+    <text x="72" y="226" text-anchor="end" class="axis-label">0</text>
+    <line x1="80" y1="176" x2="660" y2="176" class="grid-line"/>
+    <text x="72" y="182" text-anchor="end" class="axis-label">1,000</text>
+    <line x1="80" y1="132" x2="660" y2="132" class="grid-line"/>
+    <text x="72" y="138" text-anchor="end" class="axis-label">2,000</text>
+    <line x1="80" y1="88" x2="660" y2="88" class="grid-line"/>
+    <text x="72" y="94" text-anchor="end" class="axis-label">3,000</text>
+    <line x1="80" y1="44" x2="660" y2="44" class="grid-line"/>
+    <text x="72" y="50" text-anchor="end" class="axis-label">4,000</text>
+    <line x1="80" y1="217.8" x2="660" y2="217.8" class="ref-line"/>
+    <text x="90" y="210" class="ref-label">Normal: 50</text>
+
+    <polyline points="100,156.2 155,114.4 205,47.7 265,191.9 325,166.8 380,173.6 435,186.7 495,38.5 565,215.7 640,218.9"
+      fill="none" stroke="#E24B4A" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="100" cy="156.2" r="4" fill="#E24B4A"/>
+    <circle cx="155" cy="114.4" r="4" fill="#E24B4A"/>
+    <circle cx="205" cy="47.7" r="6" fill="#A32D2D" stroke="#fff" stroke-width="2"/>
+    <circle cx="265" cy="191.9" r="4" fill="#E24B4A"/>
+    <circle cx="325" cy="166.8" r="4" fill="#E24B4A"/>
+    <circle cx="380" cy="173.6" r="4" fill="#E24B4A"/>
+    <circle cx="435" cy="186.7" r="4" fill="#E24B4A"/>
+    <circle cx="495" cy="38.5" r="6" fill="#A32D2D" stroke="#fff" stroke-width="2"/>
+    <circle cx="565" cy="215.7" r="4" fill="#185FA5"/>
+    <circle cx="640" cy="218.9" r="6" fill="#0F6E56" stroke="#fff" stroke-width="2"/>
+
+    <text x="100" y="148" text-anchor="middle" class="data-label">1,510</text>
+    <text x="155" y="107" text-anchor="middle" class="data-label">2,500</text>
+    <text x="205" y="40" text-anchor="middle" class="annotation-bad">4,080</text>
+    <text x="265" y="184" text-anchor="middle" class="data-label">666</text>
+    <text x="325" y="159" text-anchor="middle" class="data-label">1,260</text>
+    <text x="380" y="166" text-anchor="middle" class="data-label">1,100</text>
+    <text x="435" y="179" text-anchor="middle" class="data-label">789</text>
+    <text x="495" y="31" text-anchor="middle" class="annotation-bad">4,300</text>
+    <text x="565" y="209" text-anchor="middle" class="annotation">102</text>
+    <text x="640" y="211" text-anchor="middle" class="annotation-good">25</text>
+
+    <text x="100" y="242" text-anchor="middle" class="axis-label">Mar</text>
+    <text x="100" y="258" text-anchor="middle" class="axis-label">2021</text>
+    <text x="155" y="242" text-anchor="middle" class="axis-label">Feb</text>
+    <text x="155" y="258" text-anchor="middle" class="axis-label">2022</text>
+    <text x="205" y="242" text-anchor="middle" class="axis-label-bold">May</text>
+    <text x="205" y="258" text-anchor="middle" class="axis-label-bold">2022</text>
+    <text x="265" y="242" text-anchor="middle" class="axis-label">Nov</text>
+    <text x="265" y="258" text-anchor="middle" class="axis-label">2022</text>
+    <text x="325" y="242" text-anchor="middle" class="axis-label">Jun</text>
+    <text x="325" y="258" text-anchor="middle" class="axis-label">2023</text>
+    <text x="380" y="242" text-anchor="middle" class="axis-label">Dec</text>
+    <text x="380" y="258" text-anchor="middle" class="axis-label">2023</text>
+    <text x="435" y="242" text-anchor="middle" class="axis-label">Aug</text>
+    <text x="435" y="258" text-anchor="middle" class="axis-label">2024</text>
+    <text x="495" y="242" text-anchor="middle" class="axis-label-bold">Mar</text>
+    <text x="495" y="258" text-anchor="middle" class="axis-label-bold">2025</text>
+    <text x="565" y="242" text-anchor="middle" class="axis-label">Jul</text>
+    <text x="565" y="258" text-anchor="middle" class="axis-label">2025</text>
+    <text x="640" y="242" text-anchor="middle" class="axis-label-bold">Nov</text>
+    <text x="640" y="258" text-anchor="middle" class="axis-label-bold">2025</text>
+
+    <text x="205" y="280" text-anchor="middle" class="annotation-bad">1st siege</text>
+    <text x="495" y="280" text-anchor="middle" class="annotation-bad">2nd siege</text>
+    <text x="640" y="280" text-anchor="middle" class="annotation-good">Ceasefire</text>
+
+    <line x1="520" y1="130" x2="555" y2="130" stroke="#185FA5" stroke-width="1.2" marker-end="url(#blue-arrow)"/>
+    <text x="610" y="135" text-anchor="middle" class="annotation">Risankizumab</text>
+    <line x1="100" y1="290" x2="495" y2="290" stroke="#999" stroke-width="0.8"/>
+    <text x="298" y="304" text-anchor="middle" style="font-size:14px;fill:#999">Pentasa (2&rarr;3&rarr;4 capsules/day)</text>
+  </svg>
+</div>
+
+<p class="chapter">The other instruments</p>
+
+<p>The sticky board was the loudest signal, but the beekeeper &mdash; and Harrison&rsquo;s doctors &mdash; had other ways of reading the smoke.</p>
+
+<p><strong>White blood cell count</strong> &mdash; the body&rsquo;s total immune mobilization. Harrison&rsquo;s ran at the high end of normal for two years (10.5 &rarr; 11.5 &rarr; 11.0 &rarr; 10.1), then dropped steadily on risankizumab: 8.6 &rarr; 8 &rarr; 5 &rarr; 7. The factories stood down. <span class="bee-callback">As if you could measure the total number of bees on guard duty across the whole hive, and watch it fall back to normal.</span></p>
+
+<p><strong>Absolute neutrophil count</strong> &mdash; the live conscripts in the bloodstream, mobilized and waiting for deployment. Harrison&rsquo;s: 6.31 &rarr; 5.50 &rarr; 4.67 &rarr; 3.9 &rarr; 2.5 &rarr; 3.0. A steady decline from above-normal to mid-range. <span class="bee-callback">The staging area emptying out because the battle no longer needed reinforcements.</span></p>
+
+<p><strong>Monocytes</strong> &mdash; the precursors to dendritic cells and macrophages, the raw material that becomes the surveillance system. Harrison&rsquo;s were elevated for two years (1.26 &rarr; 1.13 &rarr; 1.25 &rarr; 1.08), well above the normal ceiling of ~0.9. They normalized under treatment: 0.88 &rarr; 0.9 &rarr; 0.5 &rarr; 0.8. <span class="bee-callback">The colony no longer demanding extra guards.</span></p>
+
+<p><strong>Platelets</strong> &mdash; not immune cells, but produced in the same bone marrow. When the marrow runs hot from inflammatory signaling (especially IL-6), it ramps up all production lines, including platelets. Harrison&rsquo;s were elevated for every Yale measurement: 471 &rarr; 405 &rarr; 415 &rarr; 406 &rarr; 408. On risankizumab: 388 &rarr; 349 &rarr; 337 &rarr; 353. The factories cooled. This was the slowest marker to normalize &mdash; the last furnace to bank. <span class="bee-callback">As if you could measure the heat of the hive&rsquo;s wax glands and watch them gradually stop overproducing.</span></p>
+
+<p><strong>Eosinophils</strong> &mdash; the allergy and parasite corps. If Harrison&rsquo;s war had been driven by type 2 inflammation (the allergic kind), eosinophils would have been elevated. They were not: 1.1% &rarr; 0.7% &rarr; 0.9% &rarr; 1.0% &rarr; 1.3%. Low-normal throughout. <span class="bee-callback">This was never a pesticide reaction. Never a mold bloom. This was the colony&rsquo;s own security apparatus turning inward.</span></p>
+
+<p><strong>Bowel wall thickness</strong> &mdash; measured by ultrasound, the way you&rsquo;d measure the structural integrity of the comb without pulling frames. Harrison&rsquo;s walls: descending colon 0.08 cm, sigmoid 0.10 cm, ascending colon 0.26 cm, terminal ileum 0.29 cm. The abnormal threshold is 0.30 cm. His thickest segment was one-hundredth of a centimeter below it. <span class="bee-callback">The wax moths had been found, but the comb was not yet fully tunneled. The structural damage was beginning but had not crossed into irreversibility.</span></p>
+
+<!-- ═══ WALL THICKNESS CHART ═══ -->
+<div class="chart-wrap">
+  <div class="chart-title-sm">Bowel wall thickness by segment</div>
+  <div class="chart-subtitle-sm">cm &middot; June 2025 ultrasound at Mt. Sinai &middot; Abnormal &ge; 0.30 cm</div>
+  <svg width="100%" viewBox="0 0 700 250">
+    <line x1="100" y1="180" x2="600" y2="180" stroke="#ccc" stroke-width="0.8"/>
+    <text x="92" y="186" text-anchor="end" class="axis-label">0</text>
+    <line x1="100" y1="137.1" x2="600" y2="137.1" class="grid-line"/>
+    <text x="92" y="143" text-anchor="end" class="axis-label">0.10</text>
+    <line x1="100" y1="94.3" x2="600" y2="94.3" class="grid-line"/>
+    <text x="92" y="100" text-anchor="end" class="axis-label">0.20</text>
+    <line x1="100" y1="51.4" x2="600" y2="51.4" class="grid-line"/>
+    <text x="92" y="57" text-anchor="end" class="axis-label">0.30</text>
+    <line x1="100" y1="51.4" x2="600" y2="51.4" class="ref-line"/>
+    <text x="605" y="57" class="ref-label">Abnormal</text>
+    <rect x="130" y="145.7" width="80" height="34.3" rx="4" fill="#0D7377" opacity="0.3"/>
+    <rect x="255" y="137.1" width="80" height="42.9" rx="4" fill="#0D7377" opacity="0.3"/>
+    <rect x="380" y="68.6" width="80" height="111.4" rx="4" fill="#E8634F" opacity="0.5"/>
+    <rect x="505" y="55.7" width="80" height="124.3" rx="4" fill="#A32D2D" opacity="0.5"/>
+    <text x="170" y="138" text-anchor="middle" class="data-label" style="fill:#0D7377">0.08</text>
+    <text x="295" y="129" text-anchor="middle" class="data-label" style="fill:#0D7377">0.10</text>
+    <text x="420" y="60" text-anchor="middle" class="data-label" style="fill:#A32D2D">0.26</text>
+    <text x="545" y="47" text-anchor="middle" class="annotation-bad">0.29</text>
+    <text x="170" y="202" text-anchor="middle" class="axis-label">Descending</text>
+    <text x="170" y="218" text-anchor="middle" class="axis-label">colon</text>
+    <text x="295" y="202" text-anchor="middle" class="axis-label">Sigmoid</text>
+    <text x="295" y="218" text-anchor="middle" class="axis-label">colon</text>
+    <text x="420" y="202" text-anchor="middle" class="axis-label-bold">Ascending</text>
+    <text x="420" y="218" text-anchor="middle" class="axis-label-bold">colon</text>
+    <text x="545" y="202" text-anchor="middle" class="axis-label-bold">Terminal</text>
+    <text x="545" y="218" text-anchor="middle" class="axis-label-bold">ileum</text>
+    <text x="170" y="240" text-anchor="middle" style="font-size:13px;fill:#0D7377">&larr; left side</text>
+    <text x="480" y="240" text-anchor="middle" style="font-size:13px;fill:#A32D2D">right side &rarr;</text>
+  </svg>
+</div>
+
+<p>Harrison is eight now. His canyon is quiet. The calprotectin says peace. The ultrasound says the builders &mdash; the fibroblasts, the wax moths of the intestinal wall &mdash; never fully woke up. The walls are thin. The architecture is preserved. There is no fibrosis. There is no stricture. The tissue has not crossed into irreversible remodeling.</p>
+
+<p>He is in the window. The treatment bought time, and time is what an eight-year-old&rsquo;s gut needs most. The walls are standing. The moths never got deep enough. The comb can be rebuilt.</p>
+
+<div class="section-break">&middot; &middot; &middot;</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- PART THREE: WHERE THE ANALOGY BREAKS                 -->
+<!-- ══════════════════════════════════════════════════════ -->
+
+</div><!-- end .body -->
+
+<div class="break-header">
+  <div class="break-label">PART THREE &nbsp;&middot;&nbsp; THE LIMITS</div>
+  <h2>Where the Analogy Breaks</h2>
+  <p class="reveal-dek">Revealing disconnects that take the <strong>bee</strong> out of IBD.</p>
+  <hr class="rule">
+</div>
+
+<div class="body">
+
+<p>The hive teaches you how to <em>think about</em> IBD &mdash; the logic of mutual dependence, the fragility of tolerance, the self-reinforcing spiral, the difference between surface damage and structural collapse, the value of precise intervention. But an analogy earns trust by telling you where it stops working. Here is where the bees can&rsquo;t follow.</p>
+
+<p><strong>The foreigners live closer than anything in a hive.</strong> In a beehive, the fermentation microbes live in the stored pollen &mdash; in the pantry, inches from the brood but separated by wax walls and physical distance. In the human gut, commensal bacteria are pressed directly against the intestinal lining, separated from the immune system by a wall one epithelial cell thick. One cell. That is the entire distance between the trillions of foreign organisms and the body&rsquo;s full immune arsenal. There is no bee equivalent to this degree of intimacy. The propolis envelope and the mucus bilayer share a functional logic &mdash; active, maintained, antimicrobial barriers &mdash; but the gut&rsquo;s barrier is thinner and more precarious than anything a hive maintains. The negotiation happens at a distance measured in microns.</p>
+
+<p><strong>The scale of the commensal population has no hive equivalent.</strong> The bee bread fermentation involves perhaps a dozen important microbial species. The human colon harbors hundreds of species, in the trillions of individuals, collectively encoding more unique genes than the human genome itself. The hive&rsquo;s partnership with its microbes is real and essential, but it is a cottage industry compared to the gut&rsquo;s vast, sprawling, multi-kingdom economy. When the hive story says &ldquo;the fermentation simplified,&rdquo; imagine that sentence scaled up a thousandfold and you begin to approach what happens when the gut microbiome collapses in IBD.</p>
+
+<p><strong>The hive&rsquo;s surveillance is behavioral; the gut&rsquo;s is cellular and has memory.</strong> A guard bee checks colony scent and responds. A dendritic cell in the gut samples bacterial antigens, processes them internally, migrates to a lymph node, and presents them to T cells that can then remember that antigen for years. The gut&rsquo;s immune system has adaptive memory &mdash; it learns, specializes, and holds grudges. A bee colony&rsquo;s behavioral immune system is powerful and sophisticated, but it does not learn in the same way. It cannot develop a vendetta against a specific bacterial species the way a Th17 cell population can. The hive story captures the <em>logic</em> of the tolerance-to-aggression flip &mdash; same machinery, different output &mdash; but the gut&rsquo;s version is more precise, more persistent, and harder to reset.</p>
+
+<p><strong>The self-destruction is more literal than anything bees do.</strong> In IBD, the immune system&rsquo;s weapons damage the intestinal wall itself. Neutrophils dump calprotectin and reactive oxygen species into tissue that the immune system is supposed to be protecting. Every defensive act is a self-inflicted wound. It is as if the venom from the guard bees&rsquo; stings dissolved the wax of the hive&rsquo;s own comb &mdash; every sting weakening the structure, every defense making the colony more vulnerable. Bees don&rsquo;t do that. Their defensive weapons are directed outward. The gut&rsquo;s weapons spray inward, and the tissue catches the crossfire. The autoimmune paradox is stranger and crueler than anything in a hive.</p>
+
+<p><strong>You can requeen a colony. You cannot requeen a gut.</strong> A beekeeper who catches a queenless spiral early can introduce a new mated queen, and within weeks the colony reorganizes around her pheromone. Order is restored. The hive is, in a meaningful sense, <em>fixed.</em> Harrison&rsquo;s risankizumab does not fix his immune system. It blocks one signal &mdash; IL-23 &mdash; and the results are remarkable: calprotectin from 4,300 to 25. But the drug must be given continuously. Stop it, and the alarm may return. The hive analogy overpromises on resolution. A treated hive recovers. A treated gut is <em>managed.</em> Harrison is in remission, not cured. The window is open, but it must be held open, injection by injection, for as long as it takes the tissue to forget it was ever at war &mdash; and no one yet knows how long that is.</p>
+
+<div class="section-break">&middot; &middot; &middot;</div>
+
+<p>The beehive teaches you the shape of the problem. The feedback loop. The barrier that is an institution, not a wall. The foreign population you need and cannot live without. The surveillance apparatus that can flip. The debris in the waste stream. The beekeeper standing outside, reading the sticky board, trying to decide between a blunt weapon and a precise one.</p>
+
+<p>What it cannot teach you is how strange it is to have a war inside your own body, fought by your own cells, against organisms you depend on, in a space you cannot see and can barely reach. For that, you need the boy&rsquo;s story. And now you have it.</p>
+
+<p class="footnote">
+  <em>Author&rsquo;s note:</em> This narrative is based on real clinical data shared by Harrison&rsquo;s family. All medical findings are as documented. The beehive analogy is a storytelling device; while many of the bee behaviors described are grounded in real apicultural science, certain elements have been heightened or composited for narrative clarity. The beekeeper on Vine Hill is fictional. Harrison is not. Nothing here constitutes medical advice.
+</p>
+
+</div>
+
+</body>
+</html>

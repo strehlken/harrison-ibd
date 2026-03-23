@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M4 6L10 14L14 8L16 28L18 8L22 14L28 6L28 28L4 28Z' fill='%23B4886B'/%3E%3Cpath d='M14 8L16 28L18 8' fill='%23FAFAF7'/%3E%3C/svg%3E">
-<title>Harrison's IBD — Overview</title>
+<title>Understanding IBD: case study and allegory</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -16,6 +16,10 @@
   .tab-nav a { font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; letter-spacing: 0.5px; color: #777; text-decoration: none; padding: 14px 14px 12px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
   .tab-nav a:hover { color: #111; border-bottom-color: #ccc; }
   .tab-nav a.active { color: #111; border-bottom-color: #185FA5; }
+  .tab-nav-sub { max-width: 960px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; border-top: 1px solid #f0ede8; }
+  .tab-nav-sub a { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 400; color: #999; text-decoration: none; padding: 10px 14px 8px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .tab-nav-sub a:hover { color: #111; border-bottom-color: #ccc; }
+  .tab-nav-sub a.active { color: #111; font-weight: 500; border-bottom-color: #185FA5; }
 
   .header { max-width: 680px; margin: 0 auto; padding: 60px 24px 0; }
   .publication { font-family: 'DM Sans', sans-serif; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: #999; margin-bottom: 24px; }
@@ -26,7 +30,7 @@
   .body { max-width: 680px; margin: 0 auto; padding: 0 24px 80px; }
   .body p { font-size: 17px; line-height: 1.8; margin-bottom: 20px; color: #222; }
 
-  .card-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin: 32px 0; }
+  .card-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin: 0; }
   @media (min-width: 600px) { .card-grid { grid-template-columns: 1fr 1fr; } }
 
   .card { background: #fff; border: 1px solid #e8e6e0; border-radius: 10px; padding: 24px; text-decoration: none; color: inherit; transition: border-color 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; }
@@ -35,7 +39,11 @@
   .card-title { font-size: 19px; font-weight: 600; line-height: 1.3; margin-bottom: 8px; color: #111; }
   .card-desc { font-family: 'DM Sans', sans-serif; font-size: 13px; line-height: 1.6; color: #777; flex: 1; }
 
-  .section-label { font-family: 'DM Sans', sans-serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #999; margin-bottom: 16px; margin-top: 40px; }
+  .section { border: 1px solid #E8E4DD; border-radius: 12px; margin-top: 32px; overflow: hidden; }
+  .section-header { background: #F5F3EE; padding: 16px 22px 14px; border-bottom: 1px solid #E8E4DD; }
+  .section-label { font-family: 'DM Sans', sans-serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #777; margin: 0; }
+  .section-desc { font-family: 'Source Serif 4', Georgia, serif; font-size: 14px; color: #999; line-height: 1.5; margin-top: 6px; font-style: italic; }
+  .section-body { padding: 20px 22px 22px; }
 
   .footnote { font-family: 'DM Sans', sans-serif; font-size: 12px; color: #999; line-height: 1.6; border-top: 1px solid #eee; padding-top: 16px; margin-top: 40px; }
 </style>
@@ -45,76 +53,94 @@
 <nav class="tab-nav">
   <div class="tab-nav-inner">
     <a href="index.html" class="active">Overview</a>
-    <a href="harrisons-journey.html">Harrison&rsquo;s Canyon</a>
-    <a href="town-bottom.html">The Town</a>
-    <a href="villus-accord.html">Villus Accord</a>
-    <a href="disease-circuit.html">Disease Circuit</a>
-    <a href="gut-game-theory.html">Gut D&eacute;tente</a>
-    <a href="appendix-calprotectin.html">Calprotectin</a>
-    <a href="appendix-dendritic.html">Dendritic Cells</a>
-    <a href="appendix-charts.html">Charts</a>
+    <a href="harrisons-journey.html">Harrison&rsquo;s Case</a>
+    <a href="town-bottom.html">Understanding IBD</a>
+    <a href="appendix-calprotectin.html">Supporting Material</a>
   </div>
 </nav>
 
 <div class="header">
-  <div class="publication">THE MUCOSAL QUARTERLY</div>
-  <h1>Harrison&rsquo;s IBD</h1>
-  <p class="dek">A collection of narratives, frameworks, and appendices exploring Crohn&rsquo;s disease through metaphor &mdash; the biology told as stories of towns, treaties, circuits, and sieges.</p>
+  <h1>Understanding IBD: Case Study and Allegory</h1>
+  <p class="dek">A collection of narratives and frameworks exploring Crohn&rsquo;s disease through metaphor &mdash; the biology told as stories of bees, towns, treaties, circuits, and sieges.</p>
   <hr class="rule">
 </div>
 
 <div class="body">
 
-  <p class="section-label">Narratives</p>
-  <div class="card-grid">
-    <a class="card" href="harrisons-journey.html">
-      <div class="card-label">Case File</div>
-      <div class="card-title">Harrison&rsquo;s Canyon</div>
-      <div class="card-desc">A clinical chronicle of a seven-year-old&rsquo;s Crohn&rsquo;s disease, told from the other side of the wall &mdash; where the doctors stand with their instruments, trying to read the smoke.</div>
-    </a>
-    <a class="card" href="town-bottom.html">
-      <div class="card-label">Allegory</div>
-      <div class="card-title">The Town at the Bottom of the World</div>
-      <div class="card-desc">A story about a walled town, the foreign market outside its gates, the peacekeepers who held everything together, and the season when the peace came apart.</div>
-    </a>
-    <a class="card" href="villus-accord.html">
-      <div class="card-label">Dispatch</div>
-      <div class="card-title">The Collapse of the Villus Accord</div>
-      <div class="card-desc">A correspondent&rsquo;s account of how three interlocking truces between citizens and the foreign population beyond the walls unraveled &mdash; and why no one could stop it.</div>
-    </a>
+  <div class="section">
+    <div class="section-header">
+      <p class="section-label">Harrison&rsquo;s Case</p>
+    </div>
+    <div class="section-body">
+      <div class="card-grid">
+        <a class="card" href="harrisons-journey.html">
+          <div class="card-label">Case File</div>
+          <div class="card-title">Clinical Narrative: Harrison&rsquo;s Canyon</div>
+          <div class="card-desc">A clinical chronicle of a seven-year-old&rsquo;s Crohn&rsquo;s disease, told from the other side of the wall &mdash; where the doctors stand with their instruments, trying to read the smoke.</div>
+        </a>
+        <a class="card" href="appendix-charts.html">
+          <div class="card-label">Charts</div>
+          <div class="card-title">Charts: Reading the Smoke</div>
+          <div class="card-desc">Charts and visualizations tracking Harrison&rsquo;s clinical data over time.</div>
+        </a>
+      </div>
+    </div>
   </div>
 
-  <p class="section-label">Frameworks</p>
-  <div class="card-grid">
-    <a class="card" href="disease-circuit.html">
-      <div class="card-label">Framework</div>
-      <div class="card-title">Series Circuit, Parallel Circuit</div>
-      <div class="card-desc">A circuit-based framework for understanding why some immune diseases respond to monotherapy and others demand combination &mdash; and why timing matters.</div>
-    </a>
-    <a class="card" href="gut-game-theory.html">
-      <div class="card-label">Framework</div>
-      <div class="card-title">The Gut D&eacute;tente</div>
-      <div class="card-desc">A negotiated standoff maintained by three interlocking agreements. The default is war.</div>
-    </a>
+  <div class="section">
+    <div class="section-header">
+      <p class="section-label">Understanding IBD Through Metaphor &amp; Allegory</p>
+      <p class="section-desc">Each tile is the same story in slightly different clothes. Read any <strong>one</strong> to get the gist and understand the case study.</p>
+    </div>
+    <div class="section-body">
+      <div class="card-grid">
+        <a class="card" href="hive-on-vine-hill.html">
+          <div class="card-label">Allegory</div>
+          <div class="card-title">The Hive on Vine Hill</div>
+          <div class="card-desc">A story about a colony, a beekeeper, and a war that no one declared &mdash; an adventure that puts the bee in IBD.</div>
+        </a>
+        <a class="card" href="town-bottom.html">
+          <div class="card-label">Allegory</div>
+          <div class="card-title">The Town at the Bottom of the World</div>
+          <div class="card-desc">A story about a walled town, the foreign market outside its gates, the peacekeepers who held everything together, and the season when the peace came apart.</div>
+        </a>
+        <a class="card" href="villus-accord.html">
+          <div class="card-label">Dispatch</div>
+          <div class="card-title">The Collapse of the Villus Accord</div>
+          <div class="card-desc">A correspondent&rsquo;s account of how three interlocking truces between citizens and the foreign population beyond the walls unraveled &mdash; and why no one could stop it.</div>
+        </a>
+        <a class="card" href="disease-circuit.html">
+          <div class="card-label">Framework</div>
+          <div class="card-title">Series Circuit, Parallel Circuit</div>
+          <div class="card-desc">A circuit-based framework for understanding why some immune diseases respond to monotherapy and others demand combination &mdash; and why timing matters.</div>
+        </a>
+        <a class="card" href="gut-game-theory.html">
+          <div class="card-label">Framework</div>
+          <div class="card-title">The Gut D&eacute;tente</div>
+          <div class="card-desc">A negotiated standoff maintained by three interlocking agreements. The default is war.</div>
+        </a>
+      </div>
+    </div>
   </div>
 
-  <p class="section-label">Appendices</p>
-  <div class="card-grid">
-    <a class="card" href="appendix-calprotectin.html">
-      <div class="card-label">Appendix</div>
-      <div class="card-title">The Conscripts and Their Indestructible Weapon</div>
-      <div class="card-desc">What fecal calprotectin measures, why it matters, and what a number like 4,300 means in the language of the canyon.</div>
-    </a>
-    <a class="card" href="appendix-dendritic.html">
-      <div class="card-label">Appendix</div>
-      <div class="card-title">The Origin of the Tasters</div>
-      <div class="card-desc">How a hematopoietic stem cell becomes a dendritic cell &mdash; told in the language of the town.</div>
-    </a>
-    <a class="card" href="appendix-charts.html">
-      <div class="card-label">Appendix</div>
-      <div class="card-title">Reading the Smoke</div>
-      <div class="card-desc">Charts and visualizations tracking Harrison&rsquo;s clinical data over time.</div>
-    </a>
+  <div class="section">
+    <div class="section-header">
+      <p class="section-label">Supporting Material</p>
+    </div>
+    <div class="section-body">
+      <div class="card-grid">
+        <a class="card" href="appendix-calprotectin.html">
+          <div class="card-label">Appendix</div>
+          <div class="card-title">Calprotectin: The Conscripts and Their Indestructible Weapon</div>
+          <div class="card-desc">What fecal calprotectin measures, why it matters, and what a number like 4,300 means in the language of the canyon.</div>
+        </a>
+        <a class="card" href="appendix-dendritic.html">
+          <div class="card-label">Appendix</div>
+          <div class="card-title">Dendritic Cells: The Origin of the Tasters</div>
+          <div class="card-desc">How a hematopoietic stem cell becomes a dendritic cell &mdash; told in the language of the town.</div>
+        </a>
+      </div>
+    </div>
   </div>
 
   <div class="footnote">

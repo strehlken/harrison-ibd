@@ -11,12 +11,6 @@
   body { font-family: 'Source Serif 4', Georgia, serif; background: #FAFAF7; color: #1a1a1a; }
 
   /* Tabs */
-  .tab-bar { max-width: 680px; margin: 0 auto; padding: 28px 24px 0; display: flex; gap: 4px; }
-  .tab-btn { font-family: 'DM Sans', sans-serif; font-size: 13px; padding: 8px 18px; border: none; background: transparent; color: #999; cursor: pointer; border-radius: 8px 8px 0 0; transition: all 0.15s; }
-  .tab-btn:hover { background: #f0ede6; }
-  .tab-btn.active { background: #fff; color: #1a1a1a; font-weight: 500; box-shadow: 0 -1px 3px rgba(0,0,0,0.04); }
-  .tab-content { display: none; }
-  .tab-content.active { display: block; }
 
   /* Story styles */
   .header { max-width: 680px; margin: 0 auto; padding: 40px 24px 0; }
@@ -58,32 +52,33 @@
   .tab-nav a { font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; letter-spacing: 0.5px; color: #777; text-decoration: none; padding: 14px 14px 12px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
   .tab-nav a:hover { color: #111; border-bottom-color: #ccc; }
   .tab-nav a.active { color: #111; border-bottom-color: #185FA5; }
+  .tab-nav-sub { max-width: 960px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; border-top: 1px solid #f0ede8; }
+  .tab-nav-sub a { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 400; color: #999; text-decoration: none; padding: 10px 14px 8px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .tab-nav-sub a:hover { color: #111; border-bottom-color: #ccc; }
+  .tab-nav-sub a.active { color: #111; font-weight: 500; border-bottom-color: #185FA5; }
 </style>
 </head>
 <body>
 <nav class="tab-nav">
   <div class="tab-nav-inner">
     <a href="index.html">Overview</a>
-    <a href="harrisons-journey.html">Harrison&rsquo;s Canyon</a>
+    <a href="harrisons-journey.html">Harrison&rsquo;s Case</a>
+    <a href="town-bottom.html" class="active">Understanding IBD</a>
+    <a href="appendix-calprotectin.html">Supporting Material</a>
+  </div>
+  <div class="tab-nav-sub">
+    <a href="hive-on-vine-hill.html">The Hive</a>
     <a href="town-bottom.html" class="active">The Town</a>
     <a href="villus-accord.html">Villus Accord</a>
     <a href="disease-circuit.html">Disease Circuit</a>
     <a href="gut-game-theory.html">Gut D&eacute;tente</a>
-    <a href="appendix-calprotectin.html">Calprotectin</a>
-    <a href="appendix-dendritic.html">Dendritic Cells</a>
-    <a href="appendix-charts.html">Charts</a>
   </div>
 </nav>
 
-<div class="tab-bar">
-  <button class="tab-btn active" onclick="showTab('story')">The story</button>
-  <button class="tab-btn" onclick="showTab('diagram')">The détente (diagram)</button>
-</div>
-
 <!-- ════════════════════════════════════════════════ -->
-<!-- STORY TAB -->
+<!-- STORY -->
 <!-- ════════════════════════════════════════════════ -->
-<div class="tab-content active" id="tab-story">
+<div id="tab-story">
 <div class="header">
   <h1>The Town at the Bottom of the World</h1>
   <p class="dek">A story about a walled town, the foreign market outside its gates, the peacekeepers who held everything together, and the season when the peace came apart.</p>
@@ -325,6 +320,7 @@
 
 <p>The war could end tomorrow. Every soldier could lay down its weapons. Every Taster could go back to calm reporting. It wouldn't matter. The Builders would keep building. They had forgotten how to stop.</p>
 
+<!--
 <p class="chapter">Part seven: The thing nobody talks about</p>
 
 <p>There was one more cruelty in this story, and it was the strangest one.</p>
@@ -340,6 +336,7 @@
 <p>The compound was withdrawn. The doctors stood outside the canyon and argued about what had gone wrong.</p>
 
 <p>What had gone wrong was that they had confused a weapon with a resource. IL-17 was both. You couldn't remove it without destroying the very structure you were trying to protect.</p>
+-->
 
 <!-- ═══ VISUAL: Three converging arrows ═══ -->
 <div class="vis">
@@ -359,7 +356,7 @@
 </svg>
 </div>
 
-<p class="chapter">Part eight: What the doctors are trying now</p>
+<p class="chapter">Part seven: What the doctors are trying now</p>
 
 <p>The smarter doctors — the ones who studied Ileum's architecture instead of just counting its soldiers — eventually realized that there was no single thing to fix. The Wall was broken. The Tasters were alarmed. The Peacekeepers were outnumbered or turned. The soldiers were attacking everything. The Builders were self-sustaining. The Faecals were mostly gone. The Gate — the MAdCAM-1 immigration checkpoint in the blood vessels below town, where new cells entered Ileum from the wider body — was processing a steady stream of fresh soldier reinforcements, waved through on their α4β7 credentials.</p>
 
@@ -393,9 +390,9 @@
 </div>
 
 <!-- ════════════════════════════════════════════════ -->
-<!-- DIAGRAM TAB -->
+<!-- DIAGRAM -->
 <!-- ════════════════════════════════════════════════ -->
-<div class="tab-content" id="tab-diagram">
+<div id="tab-diagram">
 <div class="diagram-wrap">
   <h2>The gut détente</h2>
   <p class="sub">A negotiated standoff maintained by three interlocking agreements. The default is war.</p>
@@ -559,15 +556,6 @@
 </div>
 </div>
 
-<script>
-function showTab(id) {
-  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('tab-' + id).classList.add('active');
-  event.target.classList.add('active');
-  window.scrollTo(0, 0);
-}
-</script>
 
 </body>
 </html>
